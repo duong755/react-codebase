@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "outDir": "./out",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "importHelpers": true,
+    "exactOptionalPropertyTypes": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "#/types": ["./src/types/*"]
+    },
+    "typeRoots": ["./node_modules/@types/*", "./src/types/*"]
+  },
+  "include": ["src"],
+  "exclude": ["out", "dist", "build", ".webpack", "tsconfig.json", "package.json", "webpack.config.js"]
+}
