@@ -16,12 +16,12 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
  * @returns {import("webpack").Configuration}
  */
 module.exports = function (webpackEnv, argv) {
-  const PORT = webpackEnv.PORT || "3000";
+  const PORT = argv.port || "3000";
   const IS_DEVELOPMENT = argv.mode === "development";
   const IS_PRODUCTION = argv.mode === "production";
 
   return {
-    mode: getWebpackMode(IS_PRODUCTION),
+    mode: argv.mode,
     bail: IS_PRODUCTION,
     devtool: getWebpackDevtool(IS_PRODUCTION, IS_DEVELOPMENT),
     context: __dirname,
@@ -150,17 +150,6 @@ function getStyleLoaders(production, cssOptions, preProcessor) {
 /**
  *
  * @param {boolean} production
- */
-function getWebpackMode(production) {
-  if (production) {
-    return "production";
-  }
-  return "development";
-}
-
-/**
- *
- * @param {boolean} production
  * @param {boolean} development
  * @returns
  */
@@ -168,7 +157,7 @@ function getWebpackDevtool(production, development) {
   if (production) {
     return "source-map";
   } else if (development) {
-    return "cheap-module-source-map";
+    return "eval-cheap-module-source-map";
   }
 }
 

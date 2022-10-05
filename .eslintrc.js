@@ -9,11 +9,13 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:prettier/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -97,7 +99,7 @@ module.exports = {
     ],
     "import/no-unresolved": "error",
   },
-  ignorePatterns: ["config/", "scripts/", ".eslintrc.js", ".prettierc.js", "*.config.js"],
+  ignorePatterns: ["build/", "public/", ".webpack/", ".eslintrc.js", ".prettierc.js", "*.config.js"],
   overrides: [
     {
       files: ["*.d.ts"],

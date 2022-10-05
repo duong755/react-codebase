@@ -4,8 +4,9 @@ This codebase is massively copied from `create-react-app`'s ejected app. It has/
 
 - `webpack.config.js`
 - Babel and TypeScript
+- React
 - ESLint and Prettier
-- SASS/SCSS and Tailwindcss
+- SASS/SCSS/CSS modules and Tailwindcss
 
 To use this:
 
