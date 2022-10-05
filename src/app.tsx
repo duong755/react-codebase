@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 
-const App: FunctionComponent = () => {
+const App: React.FunctionComponent = () => {
   return (
     <div>
-      <div className="text-center">cohost</div>
+      <div className="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
     </div>
   );
 };

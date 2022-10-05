@@ -20,7 +20,7 @@
     "exactOptionalPropertyTypes": true,
     "resolveJsonModule": true,
     "paths": {
-      "#/types": ["./src/types/*"]
+      "#/*": ["./src/*"]
     },
     "typeRoots": ["./node_modules/@types/*", "./src/types/*"]
   },
