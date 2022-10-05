@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./index.scss";
 import { App } from "./app";
+import "./index.scss";
 
 const root = document.getElementById("root") as HTMLElement;
 
