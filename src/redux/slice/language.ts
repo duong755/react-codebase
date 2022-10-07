@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { languageChangeThunk } from "../thunk";
+import { languageChangeThunk, languageResetThunk } from "../thunk";
 
 const initialState = {
   value: "en",
@@ -26,6 +26,26 @@ export const languageSlice = createSlice({
         };
       })
       .addCase(languageChangeThunk.rejected, (state) => {
+        return {
+          value: state.value,
+          loading: false,
+        };
+      });
+
+    builder
+      .addCase(languageResetThunk.pending, (state) => {
+        return {
+          value: state.value,
+          loading: true,
+        };
+      })
+      .addCase(languageResetThunk.fulfilled, () => {
+        return {
+          value: "en",
+          loading: false,
+        };
+      })
+      .addCase(languageResetThunk.rejected, (state) => {
         return {
           value: state.value,
           loading: false,

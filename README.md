@@ -4,7 +4,7 @@ This codebase is massively copied from `create-react-app`'s ejected app. It has/
 
 - `webpack.config.js`
 - Babel and TypeScript
-- React
+- React, Redux (thunk, saga, and observable)
 - ESLint and Prettier
 - SASS/SCSS/CSS modules and Tailwindcss
 

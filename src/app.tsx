@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useAppDispatch, useAppSelector } from "./redux/store";
-import { languageChangeThunk } from "./redux/thunk";
+import { languageChangeThunk, languageResetThunk } from "./redux/thunk";
 
 import { useCustomTranslation } from "./utils/translation";
 
@@ -14,14 +14,22 @@ const App: React.FunctionComponent = () => {
     const languageCode = event.target.value;
     dispatch(languageChangeThunk(languageCode));
   };
+  const handleClickResetButton: React.MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(languageResetThunk());
+  };
 
   return (
     <div className="text-center">
-      <select value={language.value} onChange={handleChangeLanguageSelection}>
-        <option value="en">en</option>
-        <option value="de">de</option>
-        <option value="vi">vi</option>
-      </select>
+      <div>
+        <select value={language.value} onChange={handleChangeLanguageSelection}>
+          <option value="en">en</option>
+          <option value="de">de</option>
+          <option value="vi">vi</option>
+        </select>
+        <button className="bg-slate-400" onClick={handleClickResetButton}>
+          Reset language
+        </button>
+      </div>
       <div className="font-bold">{t("introduction")}</div>
     </div>
   );
