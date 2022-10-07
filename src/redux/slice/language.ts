@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { languageChangeThunk, languageResetThunk } from "../thunk";
+import { languageChangeThunk, languageResetThunk } from "#/redux/thunk";
 
 const initialState = {
   value: "en",

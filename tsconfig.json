@@ -19,6 +19,10 @@
     "importHelpers": true,
     "exactOptionalPropertyTypes": true,
     "resolveJsonModule": true,
+    "paths": {
+      "#/utils/*": ["./src/utils/*"],
+      "#/redux/*": ["./src/redux/*"]
+    },
     "typeRoots": ["./node_modules/@types/*", "./src/types/*"]
   },
   "include": ["src"],

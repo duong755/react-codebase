@@ -5,8 +5,8 @@ import type { Epic } from "redux-observable";
 import { from, forkJoin, of } from "rxjs";
 import { exhaustMap, map } from "rxjs/operators";
 
-import { i18next } from "../../utils/translation";
-import { languageSlice } from "../slice/language";
+import { i18next } from "#/utils/translation";
+import { languageSlice } from "#/redux/slice/language";
 
 export const languageChangeEpic: Epic<Action<string>, Action<string>> = (action$) => {
   return action$.pipe(

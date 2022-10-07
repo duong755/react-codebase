@@ -41,6 +41,9 @@ module.exports = {
     react: {
       version: "detect",
     },
+    "import/resolver": {
+      typescript: {},
+    },
   },
   rules: {
     "prefer-const": [

@@ -5,9 +5,9 @@ import type { Action, AnyAction, Store } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { createEpicMiddleware } from "redux-observable";
 
-import { rootReducer } from "./slice";
-import { rootSaga } from "./saga";
-import { rootEpic } from "./epic";
+import { rootReducer } from "#/redux/slice";
+import { rootSaga } from "#/redux/saga";
+import { rootEpic } from "#/redux/epic";
 
 const sagaMiddleware = createSagaMiddleware();
 const epicMiddleware = createEpicMiddleware();
