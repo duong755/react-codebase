@@ -1,5 +1,5 @@
 import { languageSlice } from "./language";
 
-export const allReducers = {
+export const rootReducer = {
   language: languageSlice.reducer,
 };

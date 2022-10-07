@@ -47,6 +47,24 @@ const AppSaga: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, langua
   );
 };
 
+const AppEpic: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
+  const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const languageCode = event.target.value;
+    dispatch({ type: "[epic]language/change", payload: languageCode });
+  };
+
+  return (
+    <div>
+      <div>Redux Observable</div>
+      <select value={language.value} onChange={handleChangeLanguageSelection}>
+        <option value="en">en</option>
+        <option value="de">de</option>
+        <option value="vi">vi</option>
+      </select>
+    </div>
+  );
+};
+
 const App: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
   const language = useAppSelector((state) => state.language);
@@ -60,6 +78,9 @@ const App: React.FunctionComponent = () => {
         </div>
         <div className="w-1/3">
           <AppSaga language={language} dispatch={dispatch} />
+        </div>
+        <div className="w-1/3">
+          <AppEpic language={language} dispatch={dispatch} />
         </div>
       </div>
       <div className="font-bold">{t("introduction")}</div>

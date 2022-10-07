@@ -3,16 +3,21 @@ import { useDispatch, useSelector, useStore } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
 import type { Action, AnyAction, Store } from "redux";
 import createSagaMiddleware from "redux-saga";
+import { createEpicMiddleware } from "redux-observable";
 
-import { allReducers } from "./slice";
-import { allSaga } from "./saga";
+import { rootReducer } from "./slice";
+import { rootSaga } from "./saga";
+import { rootEpic } from "./epic";
 
 const sagaMiddleware = createSagaMiddleware();
+const epicMiddleware = createEpicMiddleware();
 
 const reduxStore = configureStore({
-  reducer: allReducers,
+  reducer: rootReducer,
   middleware(getDefaultMiddleware) {
-    return getDefaultMiddleware({ thunk: true }).concat(sagaMiddleware);
+    return getDefaultMiddleware({ thunk: true }) //
+      .concat(sagaMiddleware)
+      .concat(epicMiddleware);
   },
   preloadedState: {
     language: {
@@ -22,7 +27,8 @@ const reduxStore = configureStore({
   },
 });
 
-sagaMiddleware.run(allSaga);
+sagaMiddleware.run(rootSaga);
+epicMiddleware.run(rootEpic);
 
 export { reduxStore };
 export type MyAppState = ReturnType<typeof reduxStore.getState>;
