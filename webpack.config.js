@@ -229,6 +229,10 @@ function getWebpackOptimization(production) {
 function getWebpackResolve() {
   return {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    alias: { // the same as "compilerOptions.paths" in tsconfig.json
+      "#/utils": path.resolve(__dirname, "./src/utils"),
+      "#/redux": path.resolve(__dirname, "./src/redux"),
+    },
   };
 }
 

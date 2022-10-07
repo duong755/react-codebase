@@ -38,7 +38,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "prettier", "import", "react-hooks"],
   settings: {
-    react: {
+    "react": {
       version: "detect",
     },
     "import/resolver": {

@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { Provider as ReduxProvider } from "react-redux";
 
 import { reduxStore } from "./redux/store";
@@ -8,7 +8,7 @@ import "./index.scss";
 
 const root = document.getElementById("root") as HTMLElement;
 
-ReactDOM.render(
+render(
   <React.StrictMode>
     <ReduxProvider store={reduxStore}>
       <App />

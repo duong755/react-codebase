@@ -18,7 +18,7 @@ const AppThunk: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, langu
   };
 
   return (
-    <div>
+    <div className="bg-blue-400">
       <div>Redux Thunk</div>
       <select value={language.value} onChange={handleChangeLanguageSelection}>
         <option value="en">en</option>
@@ -36,7 +36,7 @@ const AppSaga: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, langua
   };
 
   return (
-    <div>
+    <div className="bg-purple-400">
       <div>Redux Saga</div>
       <select value={language.value} onChange={handleChangeLanguageSelection}>
         <option value="en">en</option>
@@ -54,7 +54,7 @@ const AppEpic: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, langua
   };
 
   return (
-    <div>
+    <div className="bg-pink-400">
       <div>Redux Observable</div>
       <select value={language.value} onChange={handleChangeLanguageSelection}>
         <option value="en">en</option>
@@ -72,6 +72,7 @@ const App: React.FunctionComponent = () => {
 
   return (
     <div className="text-center">
+      <h4 className="font-bold text-3xl py-2">Choose a Redux middleware</h4>
       <div className="flex">
         <div className="w-1/3">
           <AppThunk language={language} dispatch={dispatch} />
