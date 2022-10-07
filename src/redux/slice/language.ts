@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { languageChangeThunk, languageResetThunk } from "../thunk";
 
@@ -10,7 +11,14 @@ const initialState = {
 export const languageSlice = createSlice({
   name: "language",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    changeLanguage: (state, action: PayloadAction<string>) => {
+      return {
+        value: action.payload,
+        loading: false,
+      };
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(languageChangeThunk.pending, (state) => {
