@@ -59,6 +59,7 @@ module.exports = function (webpackEnv, argv) {
       liveReload: true,
       hot: true,
       port: PORT,
+      historyApiFallback: true,
     },
   };
 };

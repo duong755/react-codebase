@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 
 import { MyAppState, useAppDispatch, useAppSelector } from "./redux/store";
 import type { MyAppDispatch } from "./redux/store";
@@ -84,7 +85,30 @@ const App: React.FunctionComponent = () => {
           <AppEpic language={language} dispatch={dispatch} />
         </div>
       </div>
-      <div className="font-bold">{t("introduction")}</div>
+      <div>
+        Select language to see change: <strong>{t("introduction")}</strong>
+      </div>
+      <BrowserRouter>
+        <div className="py-2">
+          <NavLink activeClassName="bg-blue-500 text-white underline" className="px-4 py-2" exact to="/">
+            Home
+          </NavLink>
+          <NavLink activeClassName="bg-blue-500 text-white underline" className="px-4 py-2" to="/about">
+            About
+          </NavLink>
+        </div>
+        <Switch>
+          <Route path="/about">
+            <div>path "/about"</div>
+          </Route>
+          <Route exact path="/">
+            <div>path "/"</div>
+          </Route>
+          <Route path="*">
+            <div>Not Found 404</div>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 };
