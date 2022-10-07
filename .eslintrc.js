@@ -82,6 +82,7 @@ module.exports = {
         tuples: "never",
       },
     ],
+    "@typescript-eslint/no-explicit-any": [0],
     "prettier/prettier": [
       "error",
       {},

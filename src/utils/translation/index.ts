@@ -2,14 +2,12 @@ import { default as i18next } from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
 import type { Namespace, KeyPrefix, UseTranslationOptions, UseTranslationResponse } from "react-i18next";
 
-import { default as en } from "./locale/en.json";
+import { default as resources } from "./locale.json";
 
 const DEFAULT_NAMESPACE = "common";
 
 i18next.use(initReactI18next).init({
-  resources: {
-    en: en,
-  },
+  resources: resources,
   defaultNS: DEFAULT_NAMESPACE,
   cleanCode: true,
   lng: "en",

@@ -6,8 +6,8 @@ const App: React.FunctionComponent = () => {
   const { t } = useCustomTranslation();
 
   return (
-    <div>
-      <div className="text-center">{t("introduction")}</div>
+    <div className="text-center">
+      <div className="font-bold">{t("introduction")}</div>
     </div>
   );
 };
