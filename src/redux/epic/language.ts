@@ -7,10 +7,11 @@ import { exhaustMap, map } from "rxjs/operators";
 
 import { i18next } from "#/utils/translation";
 import { languageSlice } from "#/redux/slice/language";
+import { epicActions } from "#/redux/epic/actions";
 
 export const languageChangeEpic: Epic<Action<string>, Action<string>> = (action$) => {
   return action$.pipe(
-    ofType<Action<string>, string, PayloadAction<string>>("[epic]language/change"),
+    ofType<Action<string>, string, PayloadAction<string>>(epicActions.language.change.type),
     exhaustMap((action) => {
       const languageCode = action.payload;
       return forkJoin([

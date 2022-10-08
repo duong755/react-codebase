@@ -3,6 +3,7 @@ import { put, takeEvery } from "redux-saga/effects";
 
 import { i18next } from "#/utils/translation";
 import { languageSlice } from "#/redux/slice/language";
+import { sagaActions } from "#/redux/saga/actions";
 
 function* languageChangeAsync(action: PayloadAction<string>) {
   const languageCode = action.payload;
@@ -11,5 +12,5 @@ function* languageChangeAsync(action: PayloadAction<string>) {
 }
 
 export function* watchLanguage() {
-  yield takeEvery("[saga]language/change", languageChangeAsync);
+  yield takeEvery(sagaActions.language.change, languageChangeAsync);
 }

@@ -1,70 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 
-import { MyAppState, useAppDispatch, useAppSelector } from "./redux/store";
-import type { MyAppDispatch } from "./redux/store";
-import { languageChangeThunk } from "./redux/thunk";
+import { AppThunk, AppSaga, AppEpic } from "./for-examples";
 
-import { useCustomTranslation } from "./utils/translation";
-
-interface AppMiddlewareProps {
-  dispatch: MyAppDispatch;
-  language: MyAppState["language"];
-}
-
-const AppThunk: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
-  const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const languageCode = event.target.value;
-    dispatch(languageChangeThunk(languageCode));
-  };
-
-  return (
-    <div className="bg-blue-400">
-      <div>Redux Thunk</div>
-      <select value={language.value} onChange={handleChangeLanguageSelection}>
-        <option value="en">en</option>
-        <option value="de">de</option>
-        <option value="vi">vi</option>
-      </select>
-    </div>
-  );
-};
-
-const AppSaga: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
-  const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const languageCode = event.target.value;
-    dispatch({ type: "[saga]language/change", payload: languageCode });
-  };
-
-  return (
-    <div className="bg-purple-400">
-      <div>Redux Saga</div>
-      <select value={language.value} onChange={handleChangeLanguageSelection}>
-        <option value="en">en</option>
-        <option value="de">de</option>
-        <option value="vi">vi</option>
-      </select>
-    </div>
-  );
-};
-
-const AppEpic: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
-  const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const languageCode = event.target.value;
-    dispatch({ type: "[epic]language/change", payload: languageCode });
-  };
-
-  return (
-    <div className="bg-pink-400">
-      <div>Redux Observable</div>
-      <select value={language.value} onChange={handleChangeLanguageSelection}>
-        <option value="en">en</option>
-        <option value="de">de</option>
-        <option value="vi">vi</option>
-      </select>
-    </div>
-  );
-};
+import { useAppDispatch, useAppSelector } from "#/redux/store";
+import { useCustomTranslation } from "#/utils/translation";
 
 const App: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
