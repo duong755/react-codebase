@@ -8,9 +8,12 @@ import { createEpicMiddleware } from "redux-observable";
 import { rootReducer } from "#/redux/slice";
 import { rootSaga } from "#/redux/saga";
 import { rootEpic } from "#/redux/epic";
+import type { StateFromReducerMapObject } from "#/types/redux";
 
-const sagaMiddleware = createSagaMiddleware();
-const epicMiddleware = createEpicMiddleware();
+type MyAppState = StateFromReducerMapObject<typeof rootReducer>;
+
+const sagaMiddleware = createSagaMiddleware<MyAppState>();
+const epicMiddleware = createEpicMiddleware<Action<string>, Action<string>, MyAppState, any>();
 
 const reduxStore = configureStore({
   reducer: rootReducer,
@@ -31,7 +34,7 @@ sagaMiddleware.run(rootSaga);
 epicMiddleware.run(rootEpic);
 
 export { reduxStore };
-export type MyAppState = ReturnType<typeof reduxStore.getState>;
+export type { MyAppState };
 export type MyAppDispatch = typeof reduxStore.dispatch;
 export const useReduxStore: <TAction extends Action<any> = AnyAction>() => Store<MyAppState, TAction> = useStore;
 export const useAppDispatch: () => MyAppDispatch = useDispatch;

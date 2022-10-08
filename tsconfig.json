@@ -21,7 +21,8 @@
     "resolveJsonModule": true,
     "paths": {
       "#/utils/*": ["./src/utils/*"],
-      "#/redux/*": ["./src/redux/*"]
+      "#/redux/*": ["./src/redux/*"],
+      "#/types/*": ["./src/types/*"]
     },
     "typeRoots": ["./node_modules/@types/*", "./src/types/*"]
   },

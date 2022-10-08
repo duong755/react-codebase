@@ -12,6 +12,18 @@ export const languageSlice = createSlice({
   name: "language",
   initialState: initialState,
   reducers: {
+    loading: (state) => {
+      return {
+        value: state.value,
+        loading: true,
+      };
+    },
+    stop: (state) => {
+      return {
+        value: state.value,
+        loading: false,
+      };
+    },
     change: (state, action: PayloadAction<string>) => {
       return {
         value: action.payload,
