@@ -1,7 +1,10 @@
 import React from "react";
 
 import { languageChangeThunk } from "#/redux/thunk";
-import type { MyAppDispatch, MyAppState } from "#/redux/store";
+import type { MyAppState } from "#/redux/slice";
+import type { MyAppDispatch } from "#/redux/store";
+import { sagaActions } from "#/redux/saga";
+import { epicActions } from "#/redux/epic";
 
 interface AppMiddlewareProps {
   dispatch: MyAppDispatch;
@@ -29,7 +32,7 @@ export const AppThunk: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch
 export const AppSaga: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
-    dispatch({ type: "[saga]language/change", payload: languageCode });
+    dispatch(sagaActions.language.change(languageCode));
   };
 
   return (
@@ -47,7 +50,7 @@ export const AppSaga: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch,
 export const AppEpic: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
-    dispatch({ type: "[epic]language/change", payload: languageCode });
+    dispatch(epicActions.language.change(languageCode));
   };
 
   return (

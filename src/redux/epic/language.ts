@@ -7,8 +7,8 @@ import { exhaustMap, map } from "rxjs/operators";
 
 import { i18next } from "#/utils/translation";
 import { languageSlice } from "#/redux/slice/language";
-import type { EpicDependencies } from "#/redux/epic/actions";
-import { MyAppState } from "#/redux/store";
+import type { EpicDependencies } from "#/redux/epic";
+import type { MyAppState } from "#/redux/slice";
 
 export const languageChangeEpic: Epic<Action<string>, Action<string>, MyAppState, EpicDependencies> = (
   action$,
