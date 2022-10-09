@@ -7,13 +7,16 @@ import { createEpicMiddleware } from "redux-observable";
 
 import { rootReducer } from "#/redux/slice";
 import { rootSaga } from "#/redux/saga";
-import { rootEpic } from "#/redux/epic";
+import { epicActions, rootEpic } from "#/redux/epic";
+import type { EpicDependencies } from "#/redux/epic";
 import type { StateFromReducerMapObject } from "#/types/redux";
 
 type MyAppState = StateFromReducerMapObject<typeof rootReducer>;
 
 const sagaMiddleware = createSagaMiddleware<MyAppState>();
-const epicMiddleware = createEpicMiddleware<Action<string>, Action<string>, MyAppState, any>();
+const epicMiddleware = createEpicMiddleware<Action<string>, Action<string>, MyAppState, EpicDependencies>({
+  dependencies: epicActions,
+});
 
 const reduxStore = configureStore({
   reducer: rootReducer,

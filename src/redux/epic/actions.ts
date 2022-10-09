@@ -5,3 +5,5 @@ export const epicActions = {
     change: createAction<string>("[epic]language/change"),
   },
 };
+
+export type EpicDependencies = typeof epicActions;
