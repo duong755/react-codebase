@@ -11,7 +11,7 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const { fstat } = require("fs");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 /**
  *
@@ -39,30 +39,7 @@ module.exports = function (webpackEnv, argv) {
     plugins: getWebpackPlugins(IS_PRODUCTION),
     parallelism: getWebpackParallelism(),
     performance: false,
-    devServer: {
-      allowedHosts: "all",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "*",
-      },
-      compress: true,
-      client: {
-        progress: true,
-        reconnect: true,
-        overlay: {
-          errors: true,
-          warnings: false,
-        },
-      },
-      static: {
-        directory: paths.appPublic,
-      },
-      liveReload: true,
-      hot: true,
-      port: PORT,
-      historyApiFallback: true,
-    },
+    devServer: getWebpackDevServer(IS_DEVELOPMENT, PORT),
   };
 };
 
@@ -83,6 +60,42 @@ const paths = {
   appIndexHtml: path.join(__dirname, "public/index.html"),
   webpackCacheDir: path.join(__dirname, ".webpack"),
 };
+
+/**
+ *
+ * @param {boolean} development
+ * @param {number | string} port
+ * @return {import("webpack").Configuration["devServer"]}
+ */
+function getWebpackDevServer(development, port) {
+  if (development) {
+    return {
+      allowedHosts: "all",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*",
+      },
+      compress: true,
+      client: {
+        progress: true,
+        reconnect: true,
+        overlay: {
+          errors: true,
+          warnings: false,
+        },
+      },
+      static: {
+        directory: paths.appPublic,
+      },
+      liveReload: true,
+      hot: true,
+      port: port,
+      historyApiFallback: true,
+    };
+  }
+  return void 0;
+}
 
 /**
  *
@@ -222,6 +235,7 @@ function getWebpackOptimization(production) {
   return {
     minimize: production,
     minimizer: [terserPlugin, cssMinimizerPlugin],
+    usedExports: true,
   };
 }
 
@@ -237,7 +251,7 @@ function getWebpackResolve() {
       "#/utils": path.resolve(__dirname, "./src/utils"),
       "#/redux": path.resolve(__dirname, "./src/redux"),
       "#/types": path.resolve(__dirname, "./src/types"),
-      "#/screens": path.resolve(__dirname, "./src/screens")
+      "#/screens": path.resolve(__dirname, "./src/screens"),
     },
   };
 }
@@ -427,6 +441,31 @@ function getWebpackPlugins(production) {
       infrastructure: "silent",
     },
   });
+  const bundleAnalyzerPlugin =
+    !production &&
+    new BundleAnalyzerPlugin({
+      statsOptions: {
+        cachedModules: true,
+        chunkGroups: true,
+        chunkModules: true,
+        all: true,
+        env: true,
+        performance: true,
+        modules: true,
+        nestedModules: true,
+        usedExports: true,
+        builtAt: true,
+        hash: true,
+        source: true,
+        reasons: true,
+        children: true,
+        optimizationBailout: true,
+        colors: true,
+      },
+      openAnalyzer: false,
+      analyzerMode: "static",
+      generateStatsFile: true,
+    });
 
   return [
     htmlWebpackPlugin,
@@ -435,6 +474,7 @@ function getWebpackPlugins(production) {
     caseSensitivePathsPlugin,
     miniCssExtractPlugin,
     tsWebpackPlugin,
+    bundleAnalyzerPlugin,
   ].filter(Boolean);
 }
 

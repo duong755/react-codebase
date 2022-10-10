@@ -5,7 +5,9 @@
   "scripts": {
     "lint": "eslint . --cache",
     "start": "webpack serve --mode development --progress --open --port 3000",
-    "build": "webpack --mode production"
+    "build": "webpack",
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack --mode production"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
@@ -20,6 +22,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-helmet": "^6.1.5",
     "@types/react-router-dom": "^5",
+    "@types/webpack-bundle-analyzer": "^4.6.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "babel-loader": "^8.2.5",
@@ -54,6 +57,7 @@
     "tslib": "^2.4.0",
     "typescript": "^4.8.4",
     "webpack": "^5.74.0",
+    "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
     "webpack-manifest-plugin": "^5.0.0"
