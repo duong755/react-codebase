@@ -5,6 +5,8 @@ import { AppThunk, AppSaga, AppEpic } from "./for-examples";
 
 import { useAppDispatch, useAppSelector } from "#/redux/store";
 import { useCustomTranslation } from "#/utils/translation";
+import { HomeScreen } from "#/screens/home";
+import { AboutScreen } from "#/screens/about";
 
 const App: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +28,7 @@ const App: React.FunctionComponent = () => {
         </div>
       </div>
       <div>
+        {language.loading && <div>Loading...</div>}
         Select language to see change: <strong>{t("introduction")}</strong>
       </div>
       <BrowserRouter>
@@ -39,10 +42,10 @@ const App: React.FunctionComponent = () => {
         </div>
         <Switch>
           <Route path="/about">
-            <div>path "/about"</div>
+            <AboutScreen />
           </Route>
           <Route exact path="/">
-            <div>path "/"</div>
+            <HomeScreen />
           </Route>
           <Route path="*">
             <div>Not Found 404</div>

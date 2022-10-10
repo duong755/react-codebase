@@ -19,10 +19,11 @@
     "importHelpers": true,
     "exactOptionalPropertyTypes": true,
     "resolveJsonModule": true,
-    "paths": {
+    "paths": { //"compilerOptions.paths" must be the same as "resolve.alias" in Webpack configuration
       "#/utils/*": ["./src/utils/*"],
       "#/redux/*": ["./src/redux/*"],
-      "#/types/*": ["./src/types/*"]
+      "#/types/*": ["./src/types/*"],
+      "#/screens/*": ["./src/screens/*"]
     },
     "typeRoots": ["./node_modules/@types/*", "./src/types/*"]
   },

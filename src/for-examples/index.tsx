@@ -9,58 +9,82 @@ import { epicActions } from "#/redux/epic";
 interface AppMiddlewareProps {
   dispatch: MyAppDispatch;
   language: MyAppState["language"];
+  className: string;
+  middlewareName: string;
+  handleChangeSelection: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
-export const AppThunk: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
+const AppBase: React.FunctionComponent<Omit<AppMiddlewareProps, "dispatch">> = ({
+  language,
+  handleChangeSelection,
+  className,
+  middlewareName,
+}) => {
+  return (
+    <div className={className}>
+      <div>{middlewareName}</div>
+      <select value={language.value} onChange={handleChangeSelection}>
+        <option value="en">en</option>
+        <option value="de">de</option>
+        <option value="vi">vi</option>
+      </select>
+    </div>
+  );
+};
+
+export const AppThunk: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({
+  dispatch,
+  language,
+}) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
     dispatch(languageChangeThunk(languageCode));
   };
 
   return (
-    <div className="bg-blue-400">
-      <div>Redux Thunk</div>
-      <select value={language.value} onChange={handleChangeLanguageSelection}>
-        <option value="en">en</option>
-        <option value="de">de</option>
-        <option value="vi">vi</option>
-      </select>
-    </div>
+    <AppBase
+      middlewareName="thunk"
+      handleChangeSelection={handleChangeLanguageSelection}
+      language={language}
+      className="bg-blue-400"
+    />
   );
 };
 
-export const AppSaga: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
+export const AppSaga: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({
+  dispatch,
+  language,
+}) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
     dispatch(sagaActions.language.change(languageCode));
   };
 
   return (
-    <div className="bg-purple-400">
-      <div>Redux Saga</div>
-      <select value={language.value} onChange={handleChangeLanguageSelection}>
-        <option value="en">en</option>
-        <option value="de">de</option>
-        <option value="vi">vi</option>
-      </select>
-    </div>
+    <AppBase
+      middlewareName="saga"
+      handleChangeSelection={handleChangeLanguageSelection}
+      language={language}
+      className="bg-purple-400"
+    />
   );
 };
 
-export const AppEpic: React.FunctionComponent<AppMiddlewareProps> = ({ dispatch, language }) => {
+export const AppEpic: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({
+  dispatch,
+  language,
+}) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
     dispatch(epicActions.language.change(languageCode));
   };
 
   return (
-    <div className="bg-pink-400">
-      <div>Redux Observable</div>
-      <select value={language.value} onChange={handleChangeLanguageSelection}>
-        <option value="en">en</option>
-        <option value="de">de</option>
-        <option value="vi">vi</option>
-      </select>
-    </div>
+    <AppBase
+      middlewareName="observable"
+      handleChangeSelection={handleChangeLanguageSelection}
+      language={language}
+      className="bg-pink-400"
+    />
   );
 };

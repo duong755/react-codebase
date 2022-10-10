@@ -1,4 +1,5 @@
 const os = require("os");
+const fs = require("fs");
 const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -10,6 +11,7 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const { fstat } = require("fs");
 
 /**
  *
@@ -228,11 +230,14 @@ function getWebpackOptimization(production) {
  * @returns {import("webpack").Configuration["resolve"]}
  */
 function getWebpackResolve() {
+  // alias must be the same as "compilerOptions.paths" in tsconfig.json
   return {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-    alias: { // the same as "compilerOptions.paths" in tsconfig.json
+    alias: {
       "#/utils": path.resolve(__dirname, "./src/utils"),
       "#/redux": path.resolve(__dirname, "./src/redux"),
+      "#/types": path.resolve(__dirname, "./src/types"),
+      "#/screens": path.resolve(__dirname, "./src/screens")
     },
   };
 }
