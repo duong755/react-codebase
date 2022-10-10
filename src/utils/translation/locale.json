@@ -1,0 +1,35 @@
+{
+  "en": {
+    "common": {
+      "introduction": "Introduction"
+    },
+    "home-screen": {
+      "title": "Home page"
+    },
+    "about-screen": {
+      "title": "About us"
+    }
+  },
+  "vi": {
+    "common": {
+      "introduction": "Giới thiệu"
+    },
+    "home-screen": {
+      "title": "Trang chủ"
+    },
+    "about-screen": {
+      "title": "Về chúng tôi"
+    }
+  },
+  "de": {
+    "common": {
+      "introduction": "die Einfuhrüng"
+    },
+    "home-screen": {
+      "title": "Startseite"
+    },
+    "about-screen": {
+      "title": "Über uns"
+    }
+  }
+}

@@ -38,8 +38,11 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "prettier", "import", "react-hooks"],
   settings: {
-    react: {
+    "react": {
       version: "detect",
+    },
+    "import/resolver": {
+      typescript: {},
     },
   },
   rules: {
@@ -82,6 +85,7 @@ module.exports = {
         tuples: "never",
       },
     ],
+    "@typescript-eslint/no-explicit-any": [0],
     "prettier/prettier": [
       "error",
       {},
