@@ -1,5 +1,4 @@
 const os = require("os");
-const fs = require("fs");
 const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -12,6 +11,7 @@ const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpack
 const TerserPlugin = require("terser-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const DotenvWebpackPlugin = require("dotenv-webpack");
 
 /**
  *
@@ -59,6 +59,7 @@ const paths = {
   appTsconfig: path.join(__dirname, "tsconfig.json"),
   appIndexHtml: path.join(__dirname, "public/index.html"),
   webpackCacheDir: path.join(__dirname, ".webpack"),
+  env: path.join(__dirname, ".env")
 };
 
 /**
@@ -467,6 +468,12 @@ function getWebpackPlugins(production) {
       generateStatsFile: true,
     });
 
+  const dotenvWebpackPlugin = new DotenvWebpackPlugin({
+    allowEmptyValues: true,
+    path: paths.env,
+    systemvars: true,
+  });
+
   return [
     htmlWebpackPlugin,
     moduleNotFoundPlugin,
@@ -474,6 +481,7 @@ function getWebpackPlugins(production) {
     caseSensitivePathsPlugin,
     miniCssExtractPlugin,
     tsWebpackPlugin,
+    dotenvWebpackPlugin,
     bundleAnalyzerPlugin,
   ].filter(Boolean);
 }
