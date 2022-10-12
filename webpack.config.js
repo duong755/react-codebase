@@ -1,5 +1,6 @@
 const path = require("path");
 
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -23,6 +24,7 @@ module.exports = function (webpackEnv, argv) {
   const PORT = argv.port || "3000";
   const IS_DEVELOPMENT = argv.mode === "development";
   const IS_PRODUCTION = argv.mode === "production";
+  const IS_PROFILE = argv.profile;
 
   return {
     mode: argv.mode,
@@ -38,7 +40,7 @@ module.exports = function (webpackEnv, argv) {
     optimization: getWebpackOptimization(IS_PRODUCTION),
     resolve: getWebpackResolve(),
     module: getWebpackModule(IS_PRODUCTION, IS_DEVELOPMENT),
-    plugins: getWebpackPlugins(IS_PRODUCTION),
+    plugins: getWebpackPlugins(IS_PRODUCTION, IS_PROFILE),
     parallelism: getWebpackParallelism(),
     performance: false,
     devServer: getWebpackDevServer(IS_DEVELOPMENT, PORT),
@@ -413,9 +415,10 @@ function getWebpackModule(production, development) {
 /**
  *
  * @param {boolean} production
+ * @param {boolean} profile
  * @returns {import("webpack").Configuration["plugins"]}
  */
-function getWebpackPlugins(production) {
+function getWebpackPlugins(production, profile) {
   const htmlWebpackPlugin = new HtmlWebpackPlugin({
     inject: true,
     template: paths.appIndexHtml,
@@ -443,12 +446,12 @@ function getWebpackPlugins(production) {
         from: paths.appPublic,
         to: paths.appBuild,
         filter: (filePath) => {
-          const excludeRegexp =  /(\.html|favicon\.ico)$/;
+          const excludeRegexp = /(\.html|favicon\.ico)$/;
           if (excludeRegexp.test(filePath)) {
             return false;
           }
           return true;
-        }
+        },
       },
     ],
   });
@@ -486,6 +489,15 @@ function getWebpackPlugins(production) {
       infrastructure: "silent",
     },
   });
+  // In order to view the profile file:
+  // - Run webpack with ProfilingPlugin (webpack --profile)
+  // - Go to Chrome, open DevTools, and go to the Performance tab (formerly Timeline).
+  // - Drag and drop generated file, or upload (events.json by default) into the profiler.
+  const profilingPlugin =
+    profile &&
+    new webpack.debug.ProfilingPlugin({
+      outputPath: path.join(__dirname, "build/events.json"),
+    });
   const bundleAnalyzerPlugin =
     !production &&
     new BundleAnalyzerPlugin({
@@ -528,6 +540,7 @@ function getWebpackPlugins(production) {
     caseSensitivePathsPlugin,
     miniCssExtractPlugin,
     tsWebpackPlugin,
+    profilingPlugin,
     dotenvWebpackPlugin,
     bundleAnalyzerPlugin,
   ].filter(Boolean);
