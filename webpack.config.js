@@ -1,17 +1,20 @@
-const os = require("os");
-const fs = require("fs");
 const path = require("path");
 
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
+const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const { fstat } = require("fs");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const DotenvWebpackPlugin = require("dotenv-webpack");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
 /**
  *
@@ -21,6 +24,7 @@ module.exports = function (webpackEnv, argv) {
   const PORT = argv.port || "3000";
   const IS_DEVELOPMENT = argv.mode === "development";
   const IS_PRODUCTION = argv.mode === "production";
+  const IS_PROFILE = argv.profile;
 
   return {
     mode: argv.mode,
@@ -28,7 +32,7 @@ module.exports = function (webpackEnv, argv) {
     devtool: getWebpackDevtool(IS_PRODUCTION, IS_DEVELOPMENT),
     context: __dirname,
     entry: paths.appEntry,
-    output: getWebpackOutput(IS_PRODUCTION, IS_DEVELOPMENT),
+    output: getWebpackOutput(IS_PRODUCTION),
     infrastructureLogging: {
       level: "none",
     },
@@ -36,10 +40,42 @@ module.exports = function (webpackEnv, argv) {
     optimization: getWebpackOptimization(IS_PRODUCTION),
     resolve: getWebpackResolve(),
     module: getWebpackModule(IS_PRODUCTION, IS_DEVELOPMENT),
-    plugins: getWebpackPlugins(IS_PRODUCTION),
+    plugins: getWebpackPlugins(IS_PRODUCTION, IS_PROFILE),
     parallelism: getWebpackParallelism(),
     performance: false,
-    devServer: {
+    devServer: getWebpackDevServer(IS_DEVELOPMENT, PORT),
+  };
+};
+
+const regexes = {
+  css: /\.css$/,
+  cssModule: /\.module\.css/,
+  scss: /\.(scss|sass)/,
+  scssModule: /\.module\.(scss|sass)/,
+};
+const paths = {
+  appSrc: path.join(__dirname, "src"),
+  appPackageJson: path.join(__dirname, "package.json"),
+  appEntry: "./src/index.tsx",
+  appNodeModules: path.join(__dirname, "node_modules"),
+  appBuild: path.join(__dirname, "build"),
+  appPublic: path.join(__dirname, "public"),
+  appTsconfig: path.join(__dirname, "tsconfig.json"),
+  appIndexHtml: path.join(__dirname, "public/index.html"),
+  appFavicon: path.join(__dirname, "public/favicon.ico"),
+  webpackCacheDir: path.join(__dirname, ".webpack"),
+  env: path.join(__dirname, ".env"),
+};
+
+/**
+ *
+ * @param {boolean} development
+ * @param {number | string} port
+ * @return {import("webpack").Configuration["devServer"]}
+ */
+function getWebpackDevServer(development, port) {
+  if (development) {
+    return {
       allowedHosts: "all",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -60,29 +96,12 @@ module.exports = function (webpackEnv, argv) {
       },
       liveReload: true,
       hot: true,
-      port: PORT,
+      port: port,
       historyApiFallback: true,
-    },
-  };
-};
-
-const regexes = {
-  css: /\.css$/,
-  cssModule: /\.module\.css/,
-  scss: /\.(scss|sass)/,
-  scssModule: /\.module\.(scss|sass)/,
-};
-const paths = {
-  appSrc: path.join(__dirname, "src"),
-  appPackageJson: path.join(__dirname, "package.json"),
-  appEntry: "./src/index.tsx",
-  appNodeModules: path.join(__dirname, "node_modules"),
-  appBuild: path.join(__dirname, "build"),
-  appPublic: path.join(__dirname, "public"),
-  appTsconfig: path.join(__dirname, "tsconfig.json"),
-  appIndexHtml: path.join(__dirname, "public/index.html"),
-  webpackCacheDir: path.join(__dirname, ".webpack"),
-};
+    };
+  }
+  return void 0;
+}
 
 /**
  *
@@ -167,13 +186,13 @@ function getWebpackDevtool(production, development) {
 /**
  *
  * @param {boolean} production
- * @param {boolean} development
  * @returns {import("webpack").Configuration["output"]}
  */
-function getWebpackOutput(production, development) {
+function getWebpackOutput(production) {
   return {
     path: paths.appBuild,
-    pathinfo: development,
+    pathinfo: false,
+    publicPath: "/",
     filename: production ? "static/js/[name].[contenthash:8].js" : "static/js/bundle.js",
     chunkFilename: production ? "static/js/[name].[contenthash:8].chunk.js" : "static/js/[name].chunk.js",
     assetModuleFilename: "static/media/[name].[hash][ext]",
@@ -209,7 +228,7 @@ function getWebpackOptimization(production) {
       compress: {
         ecma: 5,
         comparisons: false,
-        inline: 3,
+        inline: 2,
       },
       mangle: {
         safari10: true,
@@ -222,6 +241,7 @@ function getWebpackOptimization(production) {
   return {
     minimize: production,
     minimizer: [terserPlugin, cssMinimizerPlugin],
+    usedExports: true,
   };
 }
 
@@ -232,12 +252,13 @@ function getWebpackOptimization(production) {
 function getWebpackResolve() {
   // alias must be the same as "compilerOptions.paths" in tsconfig.json
   return {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    extensions: [".tsx", ".ts", ".js", ".json"],
+    cacheWithContext: false,
     alias: {
       "#/utils": path.resolve(__dirname, "./src/utils"),
       "#/redux": path.resolve(__dirname, "./src/redux"),
       "#/types": path.resolve(__dirname, "./src/types"),
-      "#/screens": path.resolve(__dirname, "./src/screens")
+      "#/screens": path.resolve(__dirname, "./src/screens"),
     },
   };
 }
@@ -301,9 +322,9 @@ function getWebpackModule(production, development) {
             loader: require.resolve("babel-loader"),
             options: {
               presets: [
-                require.resolve("@babel/preset-env"),
-                require.resolve("@babel/preset-react"),
-                require.resolve("@babel/preset-typescript"),
+                [require.resolve("@babel/preset-env")],
+                [require.resolve("@babel/preset-react")],
+                [require.resolve("@babel/preset-typescript")],
               ],
               plugins: [development && require.resolve("react-refresh/babel")].filter(Boolean),
               cacheDirectory: true, // feature of `babel-loader` for webpack, enable caching in ./node_modules/.cache/babel-loader/
@@ -383,6 +404,8 @@ function getWebpackModule(production, development) {
             exclude: [/^$/, /\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
             type: "asset/resource",
           },
+          // ** STOP ** Are you adding a new loader?
+          // Make sure to add the new loader(s) before the "file" loader.
         ],
       },
     ],
@@ -392,12 +415,14 @@ function getWebpackModule(production, development) {
 /**
  *
  * @param {boolean} production
+ * @param {boolean} profile
  * @returns {import("webpack").Configuration["plugins"]}
  */
-function getWebpackPlugins(production) {
+function getWebpackPlugins(production, profile) {
   const htmlWebpackPlugin = new HtmlWebpackPlugin({
     inject: true,
     template: paths.appIndexHtml,
+    favicon: paths.appFavicon,
     minify: production
       ? {
           removeComments: true,
@@ -414,30 +439,113 @@ function getWebpackPlugins(production) {
         }
       : undefined,
   });
-  const moduleNotFoundPlugin = new ModuleNotFoundPlugin();
-  const reactRefreshPlugin = !production && new ReactRefreshWebpackPlugin();
-  const caseSensitivePathsPlugin = !production && new CaseSensitivePathsPlugin();
-  const miniCssExtractPlugin = new MiniCssExtractPlugin({
-    filename: "static/css/[name].[contenthash:8].css",
-    chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
+  const inlineChunkHtmlPlugin = production && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]);
+  const copyWebpackPlugin = new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: paths.appPublic,
+        to: paths.appBuild,
+        filter: (filePath) => {
+          const excludeRegexp = /(\.html|favicon\.ico)$/;
+          if (excludeRegexp.test(filePath)) {
+            return false;
+          }
+          return true;
+        },
+      },
+    ],
   });
+  const manifestPlugin = new WebpackManifestPlugin({
+    generate(seed, files, entrypoints) {
+      const manifestFiles = files.reduce((manifest, file) => {
+        return {
+          ...manifest,
+          [file.name]: file.path,
+        };
+      }, seed);
+      const entrypointFiles = entrypoints.main.filter((fileName) => !fileName.endsWith(".map"));
+      return {
+        files: manifestFiles,
+        entrypoints: entrypointFiles,
+      };
+    },
+  });
+  const moduleNotFoundPlugin = new ModuleNotFoundPlugin();
+  const reactRefreshPlugin =
+    !production &&
+    new ReactRefreshWebpackPlugin({
+      overlay: false,
+    });
+  const caseSensitivePathsPlugin = !production && new CaseSensitivePathsPlugin();
+  const miniCssExtractPlugin =
+    production &&
+    new MiniCssExtractPlugin({
+      filename: "static/css/[name].[contenthash:8].css",
+      chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
+    });
   const tsWebpackPlugin = new ForkTsCheckerWebpackPlugin({
     async: !production,
     logger: {
       infrastructure: "silent",
     },
   });
+  // In order to view the profile file:
+  // - Run webpack with ProfilingPlugin (webpack --profile)
+  // - Go to Chrome, open DevTools, and go to the Performance tab (formerly Timeline).
+  // - Drag and drop generated file, or upload (events.json by default) into the profiler.
+  const profilingPlugin =
+    profile &&
+    new webpack.debug.ProfilingPlugin({
+      outputPath: path.join(__dirname, "build/events.json"),
+    });
+  const bundleAnalyzerPlugin =
+    !production &&
+    new BundleAnalyzerPlugin({
+      statsOptions: {
+        cachedModules: true,
+        chunkGroups: true,
+        chunkModules: true,
+        all: true,
+        env: true,
+        performance: true,
+        modules: true,
+        nestedModules: true,
+        usedExports: true,
+        builtAt: true,
+        hash: true,
+        source: true,
+        reasons: true,
+        children: true,
+        optimizationBailout: true,
+        colors: true,
+      },
+      openAnalyzer: false,
+      analyzerMode: "static",
+      generateStatsFile: true,
+    });
+
+  const dotenvWebpackPlugin = new DotenvWebpackPlugin({
+    allowEmptyValues: true,
+    path: paths.env,
+    systemvars: true,
+  });
 
   return [
     htmlWebpackPlugin,
+    inlineChunkHtmlPlugin,
+    copyWebpackPlugin,
+    manifestPlugin,
     moduleNotFoundPlugin,
     reactRefreshPlugin,
     caseSensitivePathsPlugin,
     miniCssExtractPlugin,
     tsWebpackPlugin,
+    profilingPlugin,
+    dotenvWebpackPlugin,
+    bundleAnalyzerPlugin,
   ].filter(Boolean);
 }
 
 function getWebpackParallelism() {
-  return os.cpus().length;
+  return 100;
 }
