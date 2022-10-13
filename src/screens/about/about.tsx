@@ -1,10 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import { useCustomTranslation } from "#/utils/translation";
+import { useAppTranslation } from "#/utils/translation";
 
 export const AboutScreen: React.FunctionComponent = () => {
-  const { t } = useCustomTranslation("about-screen");
+  const { t } = useAppTranslation("about-screen");
   return (
     <>
       <Helmet>

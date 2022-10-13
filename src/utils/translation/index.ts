@@ -17,11 +17,11 @@ i18next.use(initReactI18next).init({
   },
 });
 
-function useCustomTranslation<
-  N extends Namespace = typeof DEFAULT_NAMESPACE,
-  TKPrefix extends KeyPrefix<N> = undefined
->(ns?: N | Readonly<N>, options?: UseTranslationOptions<TKPrefix>): UseTranslationResponse<N, TKPrefix> {
+function useAppTranslation<N extends Namespace = typeof DEFAULT_NAMESPACE, TKPrefix extends KeyPrefix<N> = undefined>(
+  ns?: N | Readonly<N>,
+  options?: UseTranslationOptions<TKPrefix>
+): UseTranslationResponse<N, TKPrefix> {
   return useTranslation<N, TKPrefix>(ns, options);
 }
 
-export { useCustomTranslation, i18next };
+export { useAppTranslation, i18next };
