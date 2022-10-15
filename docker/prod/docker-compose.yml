@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  react-app:
+    container_name: "react-app-prod"
+    build:
+      context: ../.. # tip: at the directory which contains THIS FILE, run cd <CONTEXT> will move to the root directory
+      dockerfile: ./docker/prod/Dockerfile
+    ports:
+      - "3300:80" # [host post]:[container port]
+    command: ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  react-app:
+    container_name: "react-app-dev"
+    build:
+      context: ../.. # relative to root directory (where you run docker-compose ...)
+      dockerfile: ./docker/dev/Dockerfile # relative to root directory (where you run docker-compose ...)
+    ports:
+      - "3000:3000" # [host post]:[container port]
