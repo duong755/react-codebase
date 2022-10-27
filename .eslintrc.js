@@ -10,12 +10,12 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:prettier/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -65,13 +65,13 @@ module.exports = {
     "@typescript-eslint/quotes": ["error", "double"],
     "@typescript-eslint/semi": ["error", "always"],
     "@typescript-eslint/prefer-nullish-coalescing": [
-      1,
+      "warn",
       {
         ignoreConditionalTests: true,
         ignoreMixedLogicalExpressions: true,
       },
     ],
-    "@typescript-eslint/prefer-optional-chain": [1],
+    "@typescript-eslint/prefer-optional-chain": ["warn"],
     "@typescript-eslint/comma-dangle": [
       2,
       {
@@ -85,7 +85,7 @@ module.exports = {
         tuples: "never",
       },
     ],
-    "@typescript-eslint/no-explicit-any": [0],
+    "@typescript-eslint/no-explicit-any": ["warn"],
     "prettier/prettier": [
       "error",
       {},

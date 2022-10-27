@@ -35,6 +35,6 @@ epicMiddleware.run(rootEpic);
 
 export { reduxStore };
 export type MyAppDispatch = typeof reduxStore.dispatch;
-export const useReduxStore: <TAction extends Action<any> = AnyAction>() => Store<MyAppState, TAction> = useStore;
+export const useReduxStore: <TAction extends Action<unknown> = AnyAction>() => Store<MyAppState, TAction> = useStore;
 export const useAppDispatch: () => MyAppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<MyAppState> = useSelector;

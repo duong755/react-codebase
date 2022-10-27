@@ -177,6 +177,7 @@ function getStyleLoaders(production, cssOptions, preProcessor) {
  */
 function getWebpackDevtool(production, development) {
   if (production) {
+    // always go for "source-map" for production
     return "source-map";
   } else if (development) {
     return "eval-cheap-module-source-map";
