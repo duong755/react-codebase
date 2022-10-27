@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "rootDir": "./",
     "baseUrl": "./",
     "outDir": "./out",
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
     "strictNullChecks": true,
     "downlevelIteration": true,
@@ -20,13 +23,38 @@
     "exactOptionalPropertyTypes": true,
     "resolveJsonModule": true,
     "paths": { //"compilerOptions.paths" must be the same as "resolve.alias" in Webpack configuration
-      "#/utils/*": ["./src/utils/*"],
-      "#/redux/*": ["./src/redux/*"],
-      "#/types/*": ["./src/types/*"],
-      "#/screens/*": ["./src/screens/*"]
+      "#/assets/*": [
+        "./src/assets/*"
+      ],
+      "#/utils/*": [
+        "./src/utils/*"
+      ],
+      "#/redux/*": [
+        "./src/redux/*"
+      ],
+      "#/types/*": [
+        "./src/types/*"
+      ],
+      "#/screens/*": [
+        "./src/screens/*"
+      ]
     },
-    "typeRoots": ["./node_modules/@types/*", "./src/types/*"]
+    "typeRoots": [
+      "./node_modules/@types/*",
+      "./src/types/*"
+    ]
   },
-  "include": ["src"],
-  "exclude": ["out", "dist", "build", ".webpack", "tsconfig.json", "package.json", "webpack.config.js"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "out",
+    "dist",
+    "build",
+    ".webpack",
+    "tsconfig.json",
+    "package.json",
+    "webpack.config.js",
+    "tailwind.config.js"
+  ]
 }

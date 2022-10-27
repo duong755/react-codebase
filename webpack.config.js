@@ -256,6 +256,7 @@ function getWebpackResolve() {
     extensions: [".tsx", ".ts", ".js", ".json"],
     cacheWithContext: false,
     alias: {
+      "#/assets": path.resolve(__dirname, "./src/assets"),
       "#/utils": path.resolve(__dirname, "./src/utils"),
       "#/redux": path.resolve(__dirname, "./src/redux"),
       "#/types": path.resolve(__dirname, "./src/types"),
