@@ -4,10 +4,9 @@ LABEL author=duong755
 
 WORKDIR /react-app
 
-COPY package.json package.json
-COPY yarn.lock yarn.lock
+COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN yarn install --silent --frozen-lockfile
 
 COPY ./ ./
 
