@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  reactapp:
+    build:
+      context: . # tip: at the directory which contains THIS FILE, run cd <CONTEXT> will move to the root directory
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/reactapp-dev # [host path]:[container path]
+    ports:
+      - "3000:3000" # [host port]:[container port]

@@ -1,14 +1,12 @@
 FROM node:14-alpine
 
-LABEL author=duong755
-
-WORKDIR /react-app
+WORKDIR /react-app-dev
 
 COPY package.json yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
-COPY ./ ./
+COPY . .
 
 EXPOSE 3000
 
