@@ -427,18 +427,18 @@ function getWebpackPlugins(production, profile) {
     favicon: paths.appFavicon,
     minify: production
       ? {
-          removeComments: true,
-          collapseWhitespace: true,
-          collapseInlineTagWhitespace: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          html5: true,
-          minifyCSS: true,
-          minifyJS: true,
-          minifyURLs: true,
-        }
+        removeComments: true,
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        html5: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLs: true,
+      }
       : undefined,
   });
   const inlineChunkHtmlPlugin = production && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]);
