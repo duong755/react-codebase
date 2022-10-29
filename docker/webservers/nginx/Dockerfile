@@ -14,7 +14,7 @@ RUN yarn build:prod
 
 FROM nginx:1.22.0
 
-COPY ./docker/prod/default.conf /etc/nginx/conf.d/default.conf
+COPY ./docker/webservers/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=build-react-app /react-app/build /usr/share/nginx/html
 
