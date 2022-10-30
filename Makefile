@@ -3,20 +3,20 @@ DOCKER_COMPOSE_HTTPD=docker-compose -f ./docker/webservers/httpd/docker-compose.
 
 all:
 
-docker-nginx:
+nginx:
 	@$(DOCKER_COMPOSE_NGINX) up --build --detach --remove-orphans
 
-docker-nginx-stop:
+nginx-stop:
 	@$(DOCKER_COMPOSE_NGINX) down
 
-docker-nginx-restart:
+nginx-restart:
 	@$(DOCKER_COMPOSE_NGINX) restart
 
-docker-httpd:
+httpd:
 	@$(DOCKER_COMPOSE_HTTPD) up --build --detach --remove-orphans
 
-docker-httpd-stop:
+httpd-stop:
 	@$(DOCKER_COMPOSE_HTTPD) down
 
-docker-httpd-restart:
+httpd-restart:
 	@$(DOCKER_COMPOSE_HTTPD) restart
