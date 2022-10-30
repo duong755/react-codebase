@@ -16,6 +16,6 @@ FROM nginx:1.22.0
 
 COPY ./docker/webservers/nginx/default.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=build-react-app /react-app/build /usr/share/nginx/html
+COPY --from=build-react-app /react-app/build /usr/share/nginx/html/react-app
 
 EXPOSE 80
