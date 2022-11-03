@@ -12,7 +12,7 @@ COPY ./ ./
 
 RUN yarn build:prod
 
-FROM nginx:1.22.0
+FROM nginx:1.22.1-alpine
 
 COPY ./docker/webservers/nginx/default.conf /etc/nginx/conf.d/default.conf
 

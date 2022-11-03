@@ -12,7 +12,7 @@ COPY ./ ./
 
 RUN yarn build:prod
 
-FROM httpd:2.4.54
+FROM httpd:2.4.54-alpine
 
 # I copied the following line from https://github.com/docker-library/httpd/blob/f3b7fd9c8ef59d1ad46c8b2a27df3e02d822834f/2.4/Dockerfile#L6
 ENV HTTPD_PREFIX /usr/local/apache2
