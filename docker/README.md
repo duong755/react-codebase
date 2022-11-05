@@ -6,16 +6,13 @@ These notes are about how to deploy this React web application to:
 
 - Nginx and Apache (manually or with Docker)
 - Amazon Web Services:
-  - EC2
   - S3
   - Amplify
   - Lightsail
   - ECS
 - Azure:
-  - Azure Virtual Machine
   - Azure App Service
   - Azure Storage
 - Google Cloud Platform:
-  - Compute Engine
   - Cloud Storage
   - Cloud Run

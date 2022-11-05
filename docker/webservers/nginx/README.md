@@ -136,4 +136,4 @@ I provided the `default.conf`, `docker-compose.yml`, and `Dockerfile` in the sam
 make nginx
 ```
 
-I recommend readers to learn by doing and reading Nginx documentation. Go ahead and make changes to the files
+I recommend readers to learn by doing and reading Nginx documentation. Go ahead and make changes to the files.
