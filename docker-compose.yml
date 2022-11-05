@@ -3,7 +3,7 @@ services:
   reactapp:
     build:
       context: . # tip: at the directory which contains THIS FILE, run cd <CONTEXT> will move to the root directory
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.dev # relative to context
     volumes:
       - ./:/reactapp-dev # [host path]:[container path]
     ports:

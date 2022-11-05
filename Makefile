@@ -1,19 +1,22 @@
+DOCKER_COMPOSE_NGINX=docker-compose -f ./docker/webservers/nginx/docker-compose.yml
+DOCKER_COMPOSE_HTTPD=docker-compose -f ./docker/webservers/httpd/docker-compose.yml
+
 all:
 
-docker-dev:
-	@docker-compose -f ./docker/dev/docker-compose.yml up --build --detach
+nginx:
+	@$(DOCKER_COMPOSE_NGINX) up --build --detach --remove-orphans
 
-docker-dev-stop:
-	@docker-compose -f ./docker/dev/docker-compose.yml down
+nginx-stop:
+	@$(DOCKER_COMPOSE_NGINX) down
 
-docker-dev-restart:
-	@docker-compose -f ./docker/dev/docker-compose.yml restart
+nginx-restart:
+	@$(DOCKER_COMPOSE_NGINX) restart
 
-docker-prod:
-	@docker-compose -f ./docker/prod/docker-compose.yml up --build --detach
+httpd:
+	@$(DOCKER_COMPOSE_HTTPD) up --build --detach --remove-orphans
 
-docker-prod-stop:
-	@docker-compose -f ./docker/prod/docker-compose.yml down
+httpd-stop:
+	@$(DOCKER_COMPOSE_HTTPD) down
 
-docker-prod-restart:
-	@docker-compose -f ./docker/prod/docker-compose.yml restart
+httpd-restart:
+	@$(DOCKER_COMPOSE_HTTPD) restart

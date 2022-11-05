@@ -12,10 +12,10 @@ COPY ./ ./
 
 RUN yarn build:prod
 
-FROM nginx:1.22.0
+FROM nginx:1.22.1-alpine
 
-COPY ./docker/prod/default.conf /etc/nginx/conf.d/default.conf
+COPY ./docker/webservers/nginx/default.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=build-react-app /react-app/build /usr/share/nginx/html
+COPY --from=build-react-app /react-app/build /usr/share/nginx/html/react-app
 
 EXPOSE 80
