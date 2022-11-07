@@ -13,6 +13,7 @@ To use S3 at basic level, one would create *bucket* and upload files, folders to
 3. Upload to the selected bucket.
 4. Enable hosting static website.
 5. Automate (optional).
+6. CloudFront (optional, but recommended).
 
 ### Prepare an AWS account
 
@@ -132,3 +133,9 @@ aws_secret_access_key={{you secret access key}}
 aws s3 sync ./path/to/build s3://{{bucket name}}
 ```
 You might wanna add `--delete` flag to remove the files that don't exist in `./path/to/build`.
+
+### CloudFront (optional, but recommended)
+
+Using *Index Document* and *Error Document* would work, but it is just a work-around.
+
+The recommended solution is using **AWS CloudFront Function**. See pros and cons of this approach and others [here](https://stackoverflow.com/a/72450228).
