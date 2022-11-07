@@ -5,7 +5,7 @@ on:
       - "aws-*"
 jobs:
   build-react-app:
-    if: ${{ startsWith(github.ref, 'ref/tags/aws') }}
+    if: ${{ startsWith(GITHUB_REF_NAME, 'aws') }}
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +25,7 @@ jobs:
           paths: ./build
 
   deploy-to-aws-s3:
-    if: ${{ startsWith(github.ref, 'ref/tags/aws-s3') }}
+    if: ${{ startsWith(GITHUB_REF_NAME, 'aws-s3') }}
     needs:
       - build-react-app
     runs-on: ubuntu-22.04
