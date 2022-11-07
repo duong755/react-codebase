@@ -31,11 +31,11 @@ jobs:
     runs-on: ubuntu-22.04
     environment: production
     env:
-      AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION=${{ secrets.AWS_REGION }}
-      AWS_S3_URI=${{ secrets.AWS_S3_URI }}
-      AWS_CREDENTIALS=~/.aws/credentials
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_S3_URI: ${{ secrets.AWS_S3_URI }}
+      AWS_CREDENTIALS: ~/.aws/credentials
     steps:
       - name: Set up AWS CLI default profile
         run: |
