@@ -6,6 +6,8 @@ AWS S3 (AWS Simple Storage Service) provides Storage-as-a-Service. This service 
 
 To use S3 at basic level, one would create *bucket* and upload files, folders to it.
 
+Also, in this repository, I have created a Github workflow where one of its job is deploying to AWS S3.
+
 ## Guide
 
 1. Prepare an AWS account.
@@ -14,6 +16,7 @@ To use S3 at basic level, one would create *bucket* and upload files, folders to
 4. Enable hosting static website.
 5. Automate (optional).
 6. CloudFront (optional, but recommended).
+7. Route 53 (optional).
 
 ### Prepare an AWS account
 
@@ -139,3 +142,12 @@ You might wanna add `--delete` flag to remove the files that don't exist in `./p
 Using *Index Document* and *Error Document* would work, but it is just a work-around.
 
 The recommended solution is using **AWS CloudFront Function**. See pros and cons of this approach and others [here](https://stackoverflow.com/a/72450228).
+
+### Route 53 (optional)
+
+Let's say, you want to "assign" a domain to your S3-hosted static website. Here is a checklist to do that:
+
+- To follow this approach, the name of your S3 bucket must be identical to your domain (for example, `duong755.com`, `s3.duong755.com`).
+- Register a domain. You can do this via Route 53 or any other domain provider.
+- Create a **hosted zone** with Route 53. Name of this hosted zone is identical to your domain name (for example, `duong755.com`). If you registed domain via other domain provider, you have to provide custom nameservers to it. In the hosted zone, there is an NS record of which value contains 4 nameservers - add ALL of them to list of custom nameservers.
+- In the hosted zone, create an alias record, which maps to your S3 bucket. See [this Amazone S3 User Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html).
