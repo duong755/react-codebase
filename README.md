@@ -1,8 +1,8 @@
-# React App codebase
+# React App boilerplate
 
-## What does this codebase have?
+## What does this boilerplate have?
 
-This codebase is massively copied from `create-react-app@5.0.1`'s ejected initial app. It has/supports:
+This boilerplate is massively copied from `create-react-app@5.0.1`'s ejected initial app. It has/supports:
 
 - `webpack.config.js`.
 - Babel and TypeScript.
@@ -12,11 +12,16 @@ This codebase is massively copied from `create-react-app@5.0.1`'s ejected initia
 - EditorConfig.
 - Docker (for development and deployment).
 
+I also created notes on deploying static website to various cloud services:
+- Amazon Web Services (S3, Lightsail, ECS)
+- Azure (Azure App Service, Azure Storage)
+- Google Cloud Platform (Google Cloud Storage, Google Cloud Run, Google Kubernetes Engine)
+
 ## Why did I do this?
 
 I created this repository for study purposes:
 - Customize Webpack configuration.
-- Construct a codebase which contains commonly-used libraries and configuration.
+- Construct a boilerplate which contains commonly-used libraries and configuration.
 - Take notes on how to deploy a front-end web application (of course, doing so has almost nothing to do with fancy libraries). By doing these, I can gain some experience along the way, since I will try as much platform as possible.
 
 ## How to use
