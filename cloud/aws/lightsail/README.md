@@ -34,7 +34,7 @@ After clicking "Create instance", you have to wait for AWS Lightsail to finish p
 You can connect to the instance via SSH
 - on the browser, by clicking the shell icon
 - or, by your own, via the command 
-```shell
+```bash
 ssh -i ~/.ssh/path/to/private-key-file admin@<PUBLIC_IP_OF_THE_INSTANCE>
 ```
 
@@ -57,7 +57,7 @@ Why is it not recommmended? Because the deployment machine is meant to host the 
 
 - Connect to the instance via SSH
 - Install Nginx, rsync
-```shell
+```bash
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y nginx rsync
@@ -90,18 +90,18 @@ server {
 }
 ```
 - Create `/usr/share/nginx/html/react-app` and change owner of `/usr/share/nginx/html`
-```shell
+```bash
 sudo mkdir -p /usr/share/nginx/html/react-app
 sudo chown -R admin:admin /usr/share/nginx/html
 ```
 (All of the above must be done before deployment by any approach, manually or Github Action...)
 - Back to the local machine to install the dependencies and build the app
-```shell
+```bash
 yarn install
 yarn build:prod
 ```
 - Copy the build output to the instance via `rsync` command (you can use `scp`, but `rsync` is more recommended and handy. For example, `rsync` can eliminate files/directories that are absent from the target, while `scp` just copies files/directories).
-```shell
+```bash
 rsync -avzP build/ admin@<PUBLIC_IP_OF_THE_INSTANCE>:/usr/share/nginx/html/react-app --delete
 ```
 - (Note) On some Linux distributions, a deprecated practice might be still in used - `/etc/nginx/sites-available` and `/etc/nginx/sites-enabled`. I had to comment out `include /etc/nginx/sites-enabled/*` in `/etc/nginx/nginx.conf` to make `/etc/nginx/conf.d/default.conf` works.
@@ -114,3 +114,44 @@ To deploy via Github Action, we have to provide the following:
 - Username and public IP address of the instance.
 
 In this repository, see `.github/workflows/deploy-to-aws.yml`, job `deploy-to-aws-lightsail`.
+
+## Optional
+
+### Assign a domain
+
+Firstly, you need to register a domain. You can use any provider you want: Amazon Route 53, Namecheap...
+
+My choice is Namecheap, I registered `duong755.com`. Besides, I also want to work with Route 53, so I have created a DNS hosted zone (I named it `duong755.com`, like the domain that I had registered) in Route 53. After this, Route 53 will provide an NS record that contains 4 nameservers, I had to add all of these 4 nameservers to Namecheap (in Namecheap, these nameservers are called custom nameservers). According to Namecheap, this change would take up to 48 hours.
+
+Back to the Lightsail instance. Let's say I want to assign the domain `lightsail.duong755.com`. Then in `duong755.com` DNS hosted zone, I created an A record name `lightsail.duong755.com` whose value is the public IPv4 address of the instance. I also did the similar with an AAAA record (for public IPv6 address).
+
+### Enable HTTPS
+
+To enable HTTPS for the instance, you have to adjust the firewall first. From the console (website) of Amazon Lightsail, go to the page of your instance and select the *Networking* tab. In this tab, you need to add firewall rules to it, including:
+
+IPv4 or IPv6 | Application | Protocol | Port or Range | Restricted to 
+-------------|-------------|----------|---------------|------------------
+IPv4         | HTTPS       | TCP      | 443           | Any IPv4 address
+IPv6         | HTTPS       | TCP      | 443           | Any IPv6 address
+
+By default, HTTP/TCP/80 and SSH/TCP/22 are already added.
+
+Secondly, you need to install an SSL certificate. In this case, I suggest using `Let's Ensrypt`'s certbot.
+
+Let's connect to the instance and start installing.
+
+In `/etc/nginx/conf.d/default.conf`, change the argument of the `server_name` directive to the desired domain
+
+```diff
+- server_name localhost;
++ server_name lightsail.duong755.com;
+```
+
+Optionally, it is recommended to rename the `*.conf` to the respective domain. For example: `/etc/nginx/conf.d/lightsail.duong755.com.conf`.
+
+Then we install certbot and the certificate
+
+```bash
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --domain lightsail.duong755.com --nginx # done
+```
