@@ -42,4 +42,30 @@ jobs:
           path: ./build
       - name: Upload to S3
         run: |
+          # aws cli is already available
           aws s3 sync ./build "${AWS_S3_URI}" --delete --dryrun
+
+  deploy-to-aws-lightsail:
+    if: ${{ startsWith(github.ref_name, 'aws-lightsail') }}
+    needs:
+      - build-react-app
+    runs-on: ubuntu-22.04
+    environment: production
+    env:
+      LIGHTSAIL_INSTANCE_USERNAME: ${{ secrets.LIGHTSAIL_INSTANCE_USERNAME }}
+      LIGHTSAIL_INSTANCE_PUBLIC_IP: ${{ secrets.LIGHTSAIL_INSTANCE_PUBLIC_IP }}
+      LIGHTSAIL_INSTANCE_SSH_PRIVATE_KEY: ${{ secrets.LIGHTSAIL_INSTANCE_SSH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: react-app-bundle
+          path: ./build
+      - name: Rsync to Lightsail instance
+        run: |
+          # rsync and ssh are already available
+          eval $(ssh-agent -s)
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$LIGHTSAIL_INSTANCE_PUBLIC_IP" >> ~/.ssh/known_hosts
+          ssh-add <(echo "$LIGHTSAIL_INSTANCE_SSH_PRIVATE_KEY")
+          rsync -avzP ./build/ "$LIGHTSAIL_INSTANCE_USERNAME"@"$LIGHTSAIL_INSTANCE_PUBLIC_IP":/usr/share/nginx/html/react-app --delete
+
