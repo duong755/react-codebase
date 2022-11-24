@@ -13,9 +13,11 @@ This boilerplate is massively copied from `create-react-app@5.0.1`'s ejected ini
 - Docker (for development and deployment).
 
 I also created notes on deploying static website to various cloud services:
-- Amazon Web Services (S3, Lightsail, ECS)
+- Amazon Web Services (S3, Lightsail)
 - Azure (Azure App Service, Azure Storage)
 - Google Cloud Platform (Google Cloud Storage, Google Cloud Run, Google Kubernetes Engine)
+
+However, I focus on writing guideline. To have better understanding of cloud services, I recommend reading from the cloud providers' documentation.
 
 ## Why did I do this?
 
