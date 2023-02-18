@@ -104,6 +104,7 @@ module.exports = {
     "import/no-unresolved": "error",
   },
   ignorePatterns: [
+    "node_modules/",
     "build/",
     "public/",
     "cloud/",
