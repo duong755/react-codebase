@@ -15,6 +15,7 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const DotenvWebpackPlugin = require("dotenv-webpack");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 /**
  *
@@ -255,13 +256,9 @@ function getWebpackResolve() {
   return {
     extensions: [".tsx", ".ts", ".js", ".json"],
     cacheWithContext: false,
-    alias: {
-      "#/assets": path.resolve(__dirname, "./src/assets"),
-      "#/utils": path.resolve(__dirname, "./src/utils"),
-      "#/redux": path.resolve(__dirname, "./src/redux"),
-      "#/types": path.resolve(__dirname, "./src/types"),
-      "#/screens": path.resolve(__dirname, "./src/screens"),
-    },
+    plugins: [
+      new TsconfigPathsPlugin(),
+    ],
   };
 }
 

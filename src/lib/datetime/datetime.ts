@@ -6,7 +6,7 @@ import "dayjs/locale/en";
 import "dayjs/locale/de";
 import "dayjs/locale/vi";
 
-import { useAppTranslation } from "#/utils/translation";
+import { useAppTranslation } from "#/lib/translation";
 
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
