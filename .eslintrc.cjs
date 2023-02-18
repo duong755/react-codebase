@@ -103,7 +103,16 @@ module.exports = {
     ],
     "import/no-unresolved": "error",
   },
-  ignorePatterns: ["build/", "public/", ".webpack/", ".eslintrc.js", ".prettierc.js", "*.config.js"],
+  ignorePatterns: [
+    "build/",
+    "public/",
+    "cloud/",
+    ".vscode/",
+    ".webpack/",
+    ".eslintrc.cjs",
+    ".prettierc.cjs",
+    ".config.cjs",
+  ],
   overrides: [
     {
       files: ["*.d.ts"],
