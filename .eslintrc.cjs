@@ -112,7 +112,7 @@ module.exports = {
     ".webpack/",
     ".eslintrc.cjs",
     ".prettierc.cjs",
-    ".config.cjs",
+    "*.config.cjs",
   ],
   overrides: [
     {

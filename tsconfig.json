@@ -26,21 +26,21 @@
       "#/*": ["./src/*"],
     },
     "typeRoots": [
-      "./node_modules/@types/*",
-      "./src/typings/*"
+      "./node_modules/@types/",
+      "./src/typings/"
     ]
   },
   "include": [
     "src"
   ],
   "exclude": [
+    "node_modules",
     "out",
     "dist",
     "build",
     ".webpack",
     "tsconfig.json",
     "package.json",
-    "webpack.config.js",
-    "tailwind.config.js"
+    "*.cjs"
   ]
 }

@@ -11,7 +11,9 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "profile:dev": "webpack --mode development --profile",
-    "profile:prod": "webpack --mode production --profile"
+    "profile:prod": "webpack --mode production --profile",
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
@@ -68,6 +70,7 @@
     "prettier": "^2.7.1",
     "react-dev-utils": "^12.0.1",
     "react-refresh": "^0.14.0",
+    "react-test-renderer": "^17.0.2",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.55.0",
     "sass-loader": "^13.0.2",
