@@ -108,6 +108,7 @@ module.exports = {
     "build/",
     "public/",
     "cloud/",
+    "coverage/",
     ".vscode/",
     ".webpack/",
     ".eslintrc.cjs",
