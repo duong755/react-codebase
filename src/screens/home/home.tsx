@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import { useAppTranslation } from "#/utils/translation";
+import { useAppTranslation } from "#/lib/translation";
 
 export const HomeScreen: React.FunctionComponent = () => {
   const { t } = useAppTranslation("home-screen");

@@ -15,6 +15,7 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const DotenvWebpackPlugin = require("dotenv-webpack");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 /**
  *
@@ -255,9 +256,9 @@ function getWebpackResolve() {
   return {
     extensions: [".tsx", ".ts", ".js", ".json"],
     cacheWithContext: false,
-    alias: {
-      "#/": path.resolve(__dirname, "./src/"),
-    },
+    plugins: [
+      new TsconfigPathsPlugin(),
+    ],
   };
 }
 

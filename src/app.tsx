@@ -4,11 +4,11 @@ import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import { AppThunk, AppSaga, AppEpic } from "./for-examples";
 
 import { useAppDispatch, useAppSelector } from "#/redux/store";
-import { useAppTranslation } from "#/utils/translation";
+import { useAppTranslation } from "#/lib/translation";
 import { HomeScreen } from "#/screens/home";
 import { AboutScreen } from "#/screens/about";
 
-import { useLocalizedNow } from "#/utils/datetime";
+import { useLocalizedNow } from "#/lib/datetime";
 
 const App: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
