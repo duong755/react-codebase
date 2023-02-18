@@ -2,7 +2,7 @@ import { default as i18next } from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
 import type { Namespace, KeyPrefix, UseTranslationOptions, UseTranslationResponse } from "react-i18next";
 
-import resources from "./locale.json";
+import resources from "./locale";
 
 const DEFAULT_NAMESPACE = "common";
 

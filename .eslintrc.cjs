@@ -108,11 +108,12 @@ module.exports = {
     "build/",
     "public/",
     "cloud/",
+    "coverage/",
     ".vscode/",
     ".webpack/",
     ".eslintrc.cjs",
     ".prettierc.cjs",
-    ".config.cjs",
+    "*.config.cjs",
   ],
   overrides: [
     {
