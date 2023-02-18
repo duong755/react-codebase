@@ -1,4 +1,5 @@
 const path = require("path");
+const fs = require("fs");
 
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -75,6 +76,11 @@ const paths = {
  * @return {import("webpack").Configuration["devServer"]}
  */
 function getWebpackDevServer(development, port) {
+  const hasCert = fs.existsSync(path.resolve(__dirname, "secrets/localhost+6.pem"));
+  const hasKey = fs.existsSync(path.resolve(__dirname, "secrets/localhost+6-key.pem"));
+
+  const enableHttps = hasKey && hasCert;
+
   if (development) {
     return {
       allowedHosts: "all",
@@ -99,6 +105,13 @@ function getWebpackDevServer(development, port) {
       hot: true,
       port: port,
       historyApiFallback: true,
+      server: {
+        type: enableHttps ? "https" : "http",
+        options: {
+          cert: enableHttps && fs.readFileSync(path.resolve(__dirname, "secrets/localhost+6.pem")),
+          key: enableHttps && fs.readFileSync(path.resolve(__dirname, "secrets/localhost+6-key.pem"))
+        }
+      },
     };
   }
   return void 0;
