@@ -19,7 +19,7 @@ jobs:
       - name: Run unit tests with coverage
         run: |
           yarn test:cov
-          curl -Os https://uploader.codecov.io/latest/linux/codecov chmod +x codecov ./codecov
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov
 
