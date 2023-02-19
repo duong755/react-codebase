@@ -10,6 +10,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
@@ -86,6 +87,8 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-explicit-any": ["warn"],
+    "@typescript-eslint/indent": ["off"],
+    "@typescript-eslint/quotes": ["off"],
     "prettier/prettier": [
       "error",
       {},
@@ -121,6 +124,14 @@ module.exports = {
       rules: {
         "@typescript-eslint/triple-slash-reference": ["off"],
       },
+    },
+    {
+      files: ["tests/**", "**/*.{spec,test}.{ts,tsx,js,jsx}"],
+      plugins: ["jest", "testing-library"],
+      extends: [
+        "plugin:jest/recommended",
+        "plugin:testing-library/react",
+      ],
     },
   ],
 };
