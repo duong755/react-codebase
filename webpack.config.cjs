@@ -81,6 +81,14 @@ function getWebpackDevServer(development, port) {
 
   const enableHttps = hasKey && hasCert;
 
+  /**
+   * @type {import("webpack-dev-server").ServerOptions}
+   */
+  const serverOptions = enableHttps ? {
+    cert: fs.readFileSync(path.resolve(__dirname, "secrets/localhost+6.pem")),
+    key: fs.readFileSync(path.resolve(__dirname, "secrets/localhost+6-key.pem")),
+  } : undefined;
+
   if (development) {
     return {
       allowedHosts: "all",
@@ -107,10 +115,7 @@ function getWebpackDevServer(development, port) {
       historyApiFallback: true,
       server: {
         type: enableHttps ? "https" : "http",
-        options: {
-          cert: enableHttps && fs.readFileSync(path.resolve(__dirname, "secrets/localhost+6.pem")),
-          key: enableHttps && fs.readFileSync(path.resolve(__dirname, "secrets/localhost+6-key.pem"))
-        }
+        options: serverOptions
       },
     };
   }
@@ -194,7 +199,7 @@ function getWebpackDevtool(production, development) {
     // always go for "source-map" for production
     return "source-map";
   } else if (development) {
-    return "eval-cheap-module-source-map";
+    return "eval-source-map";
   }
 }
 
