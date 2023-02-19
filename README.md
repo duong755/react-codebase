@@ -1,5 +1,7 @@
 # React App boilerplate
 
+[![codecov](https://codecov.io/gh/duong755/js-boilerplates/branch/master/graph/badge.svg?token=3Y4WR9WYFM)](https://codecov.io/gh/duong755/js-boilerplates)
+
 ## What does this boilerplate have?
 
 This boilerplate is massively copied from `create-react-app@5.0.1`'s ejected initial app. It has/supports:
