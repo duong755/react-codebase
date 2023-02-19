@@ -42,7 +42,7 @@ const config = {
   },
   updateSnapshot: true,
   watchPathIgnorePatterns: [
-    "*.cjs"
+    "<rootDir>/*.cjs",
   ],
 };
 
