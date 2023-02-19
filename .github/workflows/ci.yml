@@ -17,6 +17,8 @@ jobs:
       - name: Lint
         run: |
           yarn lint
-      - name: Run unit tests
+      - name: Run unit tests with coverage
         run: |
-          yarn test
+          yarn test:cov
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
