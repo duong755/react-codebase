@@ -1,11 +1,11 @@
-const { execute } = require("@yarnpkg/shell");
+const child_process = require("child_process");
 
 module.exports = {
   name: "plugin-husky-after-installed",
   factory: (require) => ({
     hooks: {
-      afterAllInstalled: async (project, options) => {
-        await execute("yarn postinstall");
+      afterAllInstalled: (project, options) => {
+        console.log(child_process.execSync("yarn postinstall", { cwd: project.cwd }));
       },
     },
   })
