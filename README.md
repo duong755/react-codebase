@@ -28,6 +28,11 @@ I created this repository for study purposes:
 - Construct a boilerplate which contains commonly-used libraries and configuration.
 - Take notes on how to deploy a front-end web application (of course, doing so has almost nothing to do with fancy libraries). By doing these, I can gain some experience along the way, since I will try as much platform as possible.
 
+## Prerequisites
+
+- Node 16.19.0
+- Yarn v2 (Berry)
+
 ## How to use
 
 To use this locally, firstly, clone this repository, then you can run it with or without Docker.
