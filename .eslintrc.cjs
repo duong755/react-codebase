@@ -37,7 +37,14 @@ module.exports = {
       },
     },
   },
-  plugins: ["react", "@typescript-eslint", "prettier", "import", "react-hooks"],
+  plugins: [
+    "react", //
+    "@typescript-eslint",
+    "prettier",
+    "import",
+    "react-hooks",
+    "@emotion",
+  ],
   settings: {
     "react": {
       version: "detect",
@@ -98,6 +105,13 @@ module.exports = {
     ],
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": "off",
+    "react/no-unknown-property": [
+      "warn",
+      {
+        "ignore": ["css"],
+      },
+    ],
+    "@emotion/pkg-renaming": "error",
     "import/order": [
       "error",
       {

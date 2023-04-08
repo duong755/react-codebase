@@ -46,6 +46,14 @@ module.exports = function (webpackEnv, argv) {
     parallelism: getWebpackParallelism(),
     performance: false,
     devServer: getWebpackDevServer(IS_DEVELOPMENT, PORT),
+    watchOptions: {
+      ignored: [
+        "src/**/*.test.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.spec.ts",
+        "src/**/*.spec.tsx",
+      ],
+    },
   };
 };
 
@@ -60,7 +68,7 @@ const paths = {
   appPackageJson: path.join(__dirname, "package.json"),
   appEntry: "./src/index.tsx",
   appNodeModules: path.join(__dirname, "node_modules"),
-  appBuild: path.join(__dirname, "build"),
+  appBuild: path.join(__dirname, "dist"),
   appPublic: path.join(__dirname, "public"),
   appTsconfig: path.join(__dirname, "tsconfig.json"),
   appIndexHtml: path.join(__dirname, "public/index.html"),
@@ -115,7 +123,7 @@ function getWebpackDevServer(development, port) {
       historyApiFallback: true,
       server: {
         type: enableHttps ? "https" : "http",
-        options: serverOptions
+        options: serverOptions,
       },
     };
   }
@@ -513,7 +521,7 @@ function getWebpackPlugins(production, profile) {
   const profilingPlugin =
     profile &&
     new webpack.debug.ProfilingPlugin({
-      outputPath: path.join(__dirname, "build/events.json"),
+      outputPath: path.join(__dirname, "dist/events.json"),
     });
   const bundleAnalyzerPlugin =
     !production &&

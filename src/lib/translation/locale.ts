@@ -2,7 +2,7 @@ import type { Resource } from "i18next";
 
 const locales: Resource = {
   en: {
-    "common": {},
+    "translation": {},
     "home-screen": {
       "greeting": "Hello",
       "select-language": "Select language to see change",
@@ -14,7 +14,7 @@ const locales: Resource = {
     },
   },
   de: {
-    "common": {},
+    "translation": {},
     "home-screen": {
       "greeting": "Hallo",
       "select-language": "Wählen Sie die Sprache aus, um die Änderung anzuzeigen",
@@ -26,7 +26,7 @@ const locales: Resource = {
     },
   },
   vi: {
-    "common": {},
+    "translation": {},
     "home-screen": {
       "greeting": "Xin chào",
       "select-language": "Chọn ngôn ngữ để thấy thay đổi",

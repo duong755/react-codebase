@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
 
 import { AppThunk, AppSaga, AppEpic } from "#/for-examples";
 
@@ -15,9 +14,6 @@ export const HomeScreen: React.FunctionComponent = () => {
 
   return (
     <Fragment>
-      <Helmet>
-        <title>{t("title", { defaultValue: "Home page" })}</title>
-      </Helmet>
       <div className="p-10 text-center">
         <h4 className="font-bold text-3xl py-2">{t("select-redux-middleware")}</h4>
         <div className="flex items-center">
@@ -41,3 +37,5 @@ export const HomeScreen: React.FunctionComponent = () => {
     </Fragment>
   );
 };
+
+export default HomeScreen;

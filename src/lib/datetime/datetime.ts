@@ -12,7 +12,7 @@ dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
 
 export const useDatetime = (date?: dayjs.ConfigType) => {
-  const { 1: i18n } = useAppTranslation("common");
+  const { 1: i18n } = useAppTranslation("translation");
   return dayjs(date).locale(i18n.language);
 };
 
@@ -24,7 +24,7 @@ export const useDatetime = (date?: dayjs.ConfigType) => {
  * @returns
  */
 export const useLocalizedDatetime = (date?: dayjs.ConfigType, localizedFormat?: string) => {
-  const { 1: i18n } = useAppTranslation("common");
+  const { 1: i18n } = useAppTranslation("translation");
   return dayjs(date).locale(i18n.language).format(localizedFormat);
 };
 
@@ -35,6 +35,6 @@ export const useLocalizedDatetime = (date?: dayjs.ConfigType, localizedFormat?: 
  * @returns
  */
 export const useLocalizedNow = (localizedFormat?: string) => {
-  const { 1: i18n } = useAppTranslation("common");
+  const { 1: i18n } = useAppTranslation("translation");
   return dayjs().locale(i18n.language).format(localizedFormat);
 };
