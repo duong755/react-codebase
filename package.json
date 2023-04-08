@@ -117,6 +117,7 @@
     "zustand": "4.3.7"
   },
   "resolutions": {
+    "minimatch": "3.0.5",
     "rxjs": "7.5.5"
   }
 }
