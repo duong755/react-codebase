@@ -13,8 +13,9 @@ function renderWithReduxProvider() {
   );
 }
 
-beforeEach(() => {
+afterEach(() => {
   cleanup();
+  jest.clearAllMocks();
 });
 
 describe("change language", () => {
