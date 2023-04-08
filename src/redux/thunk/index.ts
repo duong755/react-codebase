@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-import { i18next } from "#/lib/translation";
+import i18next from "i18next";
 
 export const languageChangeThunk = createAsyncThunk<string, string>("[thunk]language/change", async (language) => {
   await i18next.changeLanguage(language);

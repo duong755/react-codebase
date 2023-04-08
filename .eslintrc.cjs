@@ -119,6 +119,7 @@ module.exports = {
       },
     ],
     "import/no-unresolved": "error",
+    "import/no-named-as-default-member": "off",
   },
   ignorePatterns: [
     "node_modules/",

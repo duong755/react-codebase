@@ -4,8 +4,8 @@ import { ofType } from "redux-observable";
 import type { Epic } from "redux-observable";
 import { forkJoin, of } from "rxjs";
 import { exhaustMap, map } from "rxjs/operators";
+import i18next from "i18next";
 
-import { i18next } from "#/lib/translation";
 import { languageSlice } from "#/redux/slice/language";
 import type { EpicDependencies } from "#/redux/epic";
 import type { MyAppState } from "#/redux/slice";

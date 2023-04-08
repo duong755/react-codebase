@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
+import { useTranslation } from "react-i18next";
 
 import { AppThunk, AppSaga, AppEpic } from "#/for-examples";
 
-import { useAppTranslation } from "#/lib/translation";
 import { useAppDispatch, useAppSelector } from "#/redux/store";
-import { useLocalizedNow } from "#/lib/datetime";
+import { useLocalizedNow } from "#/lib/dayjs";
 
 export const HomeScreen: React.FunctionComponent = () => {
-  const { t } = useAppTranslation("home-screen");
+  const { t } = useTranslation("home-screen");
   const dispatch = useAppDispatch();
   const language = useAppSelector((state) => state.language);
   const now = useLocalizedNow("LLLL");
