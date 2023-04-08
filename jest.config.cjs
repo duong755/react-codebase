@@ -57,7 +57,7 @@ const config = {
     "<rootDir>/src/typings/",
     "<rootDir>/src/utils/",
   ],
-  testTimeout: Infinity,
+  testTimeout: 300000,
   transform: {
     "\\.[jt]sx?": "babel-jest",
   },
