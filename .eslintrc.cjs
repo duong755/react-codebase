@@ -132,6 +132,7 @@ module.exports = {
     ".eslintrc.cjs",
     ".prettierc.cjs",
     "*.config.cjs",
+    ".yarn",
   ],
   overrides: [
     {
