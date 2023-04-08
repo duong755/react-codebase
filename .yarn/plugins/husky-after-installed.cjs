@@ -5,7 +5,7 @@ module.exports = {
   factory: (require) => ({
     hooks: {
       afterAllInstalled: (project, options) => {
-        console.log(child_process.execSync("yarn postinstall", { cwd: project.cwd }));
+        console.log(child_process.execSync("yarn postinstall", { cwd: project.cwd, encoding: "utf-8" }));
       },
     },
   })
