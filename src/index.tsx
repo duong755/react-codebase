@@ -1,19 +1,20 @@
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Provider as ReduxProvider } from "react-redux";
 
 import { App } from "./app";
 import "./index.scss";
 
 import { reduxStore } from "#/redux/store";
+import "#/lib/dayjs";
+import "#/lib/i18next";
 
-const root = document.getElementById("root") as HTMLElement;
+const root = createRoot(document.getElementById("root") as HTMLElement);
 
-render(
+root.render(
   <React.StrictMode>
     <ReduxProvider store={reduxStore}>
       <App />
     </ReduxProvider>
-  </React.StrictMode>,
-  root
+  </React.StrictMode>
 );

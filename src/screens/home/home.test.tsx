@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { HomeScreen } from "./home";
 
 import { reduxStore } from "#/redux/store";
+import "#/lib/i18next";
 
 function renderWithReduxProvider() {
   return render(

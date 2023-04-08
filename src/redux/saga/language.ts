@@ -1,7 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { call, put, takeLeading } from "redux-saga/effects";
+import i18next from "i18next";
 
-import { i18next } from "#/lib/translation";
 import { languageSlice } from "#/redux/slice/language";
 import { sagaActions } from "#/redux/saga/actions";
 

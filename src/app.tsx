@@ -18,11 +18,7 @@ const router = createBrowserRouter(
 );
 
 const App: React.FunctionComponent = () => {
-  return (
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export { App };
