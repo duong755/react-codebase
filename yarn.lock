@@ -1379,7 +1379,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.6.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.6.3, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
@@ -4769,6 +4769,15 @@ __metadata:
     cosmiconfig: ^7.0.0
     resolve: ^1.19.0
   checksum: 765de4abebd3e4688ebdfbff8571ddc8cd8061f839bb6c3e550b0344a4027b04c60491f843296ce3f3379fb356cc873d57a9ee6694262547eb822c14a25be9a6
+  languageName: node
+  linkType: hard
+
+"babel-plugin-polished@npm:1.1.0":
+  version: 1.1.0
+  resolution: "babel-plugin-polished@npm:1.1.0"
+  dependencies:
+    polished: ^1.0.0
+  checksum: e31711c27a1eb0beb05470e84e648702f853c1e0bad391f021e7802058ef43bdade7679bdb113d0332f05804085ab23a1541acb369d3dd7b1ef7a6e6e3022395
   languageName: node
   linkType: hard
 
@@ -11056,6 +11065,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"polished@npm:4.2.2":
+  version: 4.2.2
+  resolution: "polished@npm:4.2.2"
+  dependencies:
+    "@babel/runtime": ^7.17.8
+  checksum: 97fb927dc55cd34aeb11b31ae2a3332463f114351c86e8aa6580d7755864a0120164fdc3770e6160c8b1775052f0eda14db9a6e34402cd4b08ab2d658a593725
+  languageName: node
+  linkType: hard
+
+"polished@npm:^1.0.0":
+  version: 1.9.3
+  resolution: "polished@npm:1.9.3"
+  checksum: 56657433d5add52edd4c81ab598386f642a506af59f4d4726aba1ae295f5bd45f773c63cedab785ea918b1bfa60c0957b2eadca5639539628c893fcbad5e3262
+  languageName: node
+  linkType: hard
+
 "postcss-attribute-case-insensitive@npm:^6.0.2":
   version: 6.0.2
   resolution: "postcss-attribute-case-insensitive@npm:6.0.2"
@@ -12160,6 +12185,7 @@ __metadata:
     axios: 1.3.5
     babel-jest: 29.5.0
     babel-loader: 9.1.2
+    babel-plugin-polished: 1.1.0
     case-sensitive-paths-webpack-plugin: 2.4.0
     clsx: 1.2.1
     copy-webpack-plugin: 11.0.0
@@ -12189,6 +12215,7 @@ __metadata:
     lodash: 4.17.21
     mini-css-extract-plugin: 2.7.5
     msw: 1.2.1
+    polished: 4.2.2
     postcss: 8.4.21
     postcss-flexbugs-fixes: 5.0.2
     postcss-loader: 7.2.4

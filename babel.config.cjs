@@ -5,6 +5,7 @@ module.exports = {
       { runtime: "automatic", importSource: "@emotion/react" },
     ],
     "@emotion/babel-plugin",
+    "babel-plugin-polished",
   ],
   presets: [
     ["@babel/preset-env", { targets: { node: "current" } }],

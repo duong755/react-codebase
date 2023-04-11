@@ -48,3 +48,49 @@ To use this locally, firstly, clone this repository, then you can run it with or
 - Run `docker-compose up -d`.
 
 In this option, the configuration file has already used Docker volume, which allow live reloading when you save changes to source code (of course, this is possible also due to `webpack-dev-server`). In other words, you don't have to `docker-compose restart` to update the running react app.
+
+## Libraries
+
+- Routing
+  - `react-router-dom`
+- HTTP request
+  - `axios`
+  - `@tanstack/react-query`
+- Internationalization
+  - `i18next`
+  - `react-i18next`
+- State management
+  - `zustand`
+  - `redux`
+  - `react-redux`
+  - `@reduxjs/toolkit`
+  - `redux-saga`
+  - `redux-observable`
+- Form
+  - `react-hook-form`
+  - `zod`
+  - `@hookform/resolvers`
+- CSS
+  - `@emotion/react`
+  - `@emotion/styled`
+  - `clsx`
+  - `polished`
+  - `tailwindcss`
+  - `sass`
+  - `autoprefixer`
+  - `postcss`
+- Date and Time
+  - `dayjs`
+- Devtools
+  - Webpack
+  - TypeScript
+  - Babel
+  - Commitlint
+  - `lint-staged`
+  - `husky`
+  - ESLint
+  - Prettier
+- Testing
+  - Jest
+  - `@testing-library/react`
+  - `msw`
