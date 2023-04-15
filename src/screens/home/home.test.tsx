@@ -1,21 +1,10 @@
-import { render, screen, fireEvent, waitForElementToBeRemoved } from "@testing-library/react";
-import { Provider } from "react-redux";
+import { screen, fireEvent, waitForElementToBeRemoved } from "@testing-library/react";
 
-import { HomeScreen } from "./home";
-
-import { reduxStore } from "#/redux/store";
-
-function renderWithReduxProvider() {
-  return render(
-    <Provider store={reduxStore}>
-      <HomeScreen />
-    </Provider>
-  );
-}
+import { renderHomeScreen } from "./home.test-utils";
 
 describe("change language", () => {
   it("should be in English", async () => {
-    renderWithReduxProvider();
+    renderHomeScreen();
 
     const helloTextElement = await screen.findByText("Hello", { selector: "strong" });
     expect(helloTextElement).toBeInTheDocument();
@@ -23,7 +12,7 @@ describe("change language", () => {
 
   describe("change with thunk", () => {
     it("should be changed to German", async () => {
-      renderWithReduxProvider();
+      renderHomeScreen();
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const thunkSelectElement = threeComboboxes[0];
@@ -38,7 +27,7 @@ describe("change language", () => {
     });
 
     it("should be changed to Vietnamese", async () => {
-      renderWithReduxProvider();
+      renderHomeScreen();
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const thunkSelectElement = threeComboboxes[0];
@@ -53,7 +42,7 @@ describe("change language", () => {
 
   describe("change with saga", () => {
     it("should be changed to German", async () => {
-      renderWithReduxProvider();
+      renderHomeScreen();
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const sagaSelectElement = threeComboboxes[1];
@@ -66,7 +55,7 @@ describe("change language", () => {
     });
 
     it("should be changed to Vietnamese", async () => {
-      renderWithReduxProvider();
+      renderHomeScreen();
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const sagaSelectElement = threeComboboxes[1];
@@ -81,7 +70,7 @@ describe("change language", () => {
 
   describe("change with observable", () => {
     it("should be changed to German", async () => {
-      renderWithReduxProvider();
+      renderHomeScreen();
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const observableSelectElement = threeComboboxes[2];
@@ -94,7 +83,7 @@ describe("change language", () => {
     });
 
     it("should be changed to Vietnamese", async () => {
-      renderWithReduxProvider();
+      renderHomeScreen();
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const observableSelectElement = threeComboboxes[2];
