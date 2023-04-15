@@ -21,10 +21,14 @@ jobs:
       - name: Lint
         run: |
           yarn lint
-      - name: Run unit tests with coverage
+      - name: Run unit tests (babel-jest) with coverage
         run: |
           yarn test:cov
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov
+      - name: Run unit tests (@swc/jest)
+        continue-on-error: true
+        run: |
+          yarn test:swc:cov
 
