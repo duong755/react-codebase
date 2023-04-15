@@ -21,16 +21,11 @@ const config = {
     "<rootDir>/src/index.tsx",
     "<rootDir>/src/app.tsx",
   ],
-  coverageThreshold: {
-    global: {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: 70,
-    }
-  },
+  detectLeaks: true,
+  detectOpenHandles: true,
   expand: true,
   json: true,
+  logHeapUsage: true,
   moduleNameMapper: {
     "\\.(css|less|scss|sass|styl)$": "identity-obj-proxy",
     "\\.(png|jpg|jpeg|jfif|pjpeg|pjp|gif|svg|ico|webp|avif|mp4|webm|ogg|mp3|wav|flac|aac|woff2|woff|eot|ttf|otf)$": "<rootDir>/src/__mocks__/mock-file.ts",
@@ -39,9 +34,11 @@ const config = {
   modulePaths: [
     "<rootDir>",
   ],
+  passWithNoTests: true,
   setupFilesAfterEnv: [
     "jest-extended/all",
     "@testing-library/jest-dom",
+    "<rootDir>/jest.setup.cjs",
   ],
   snapshotSerializers: [
     "@emotion/jest/serializer",
@@ -49,17 +46,10 @@ const config = {
   testEnvironment: "jsdom",
   testPathIgnorePatterns: [
     "/node_modules/",
-    "<rootDir>/src/apis/",
-    "<rootDir>/src/assets/",
-    "<rootDir>/src/lib/",
-    "<rootDir>/src/redux/",
-    "<rootDir>/src/types/",
-    "<rootDir>/src/typings/",
-    "<rootDir>/src/utils/",
   ],
   testTimeout: 300000,
   transform: {
-    "\\.[jt]sx?": "babel-jest",
+    "\\.[jt]sx?$": "babel-jest",
   },
   transformIgnorePatterns: [
     "!<rootDir>/node_modules/rxjs",

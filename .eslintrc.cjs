@@ -129,9 +129,7 @@ module.exports = {
     "coverage/",
     ".vscode/",
     ".webpack/",
-    ".eslintrc.cjs",
-    ".prettierc.cjs",
-    "*.config.cjs",
+    "*.cjs",
     ".yarn",
   ],
   overrides: [

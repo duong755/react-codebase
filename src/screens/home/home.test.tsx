@@ -1,10 +1,9 @@
-import { render, screen, cleanup, fireEvent, waitForElementToBeRemoved } from "@testing-library/react";
+import { render, screen, fireEvent, waitForElementToBeRemoved } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { HomeScreen } from "./home";
 
 import { reduxStore } from "#/redux/store";
-import "#/lib/i18next";
 
 function renderWithReduxProvider() {
   return render(
@@ -13,11 +12,6 @@ function renderWithReduxProvider() {
     </Provider>
   );
 }
-
-afterEach(() => {
-  cleanup();
-  jest.clearAllMocks();
-});
 
 describe("change language", () => {
   it("should be in English", async () => {
@@ -39,7 +33,7 @@ describe("change language", () => {
 
       await waitForElementToBeRemoved(() => screen.queryByText("Loading...", { exact: true }));
 
-      const helloTextElement = await screen.findByText("Hallo", { selector: "strong" });
+      const helloTextElement = await screen.findByText("Hallo", { trim: true, selector: "strong" });
       expect(helloTextElement).toBeInTheDocument();
     });
 
@@ -52,7 +46,7 @@ describe("change language", () => {
 
       fireEvent.change(thunkSelectElement, { target: { value: "vi" } });
 
-      const helloTextElement = await screen.findByText("Xin chào", { selector: "strong" });
+      const helloTextElement = await screen.findByText("Xin chào", { trim: true, selector: "strong" });
       expect(helloTextElement).toBeInTheDocument();
     });
   });
@@ -67,7 +61,7 @@ describe("change language", () => {
 
       fireEvent.change(sagaSelectElement, { target: { value: "de" } });
 
-      const helloTextElement = await screen.findByText("Hallo", { selector: "strong" });
+      const helloTextElement = await screen.findByText("Hallo", { trim: true, selector: "strong" });
       expect(helloTextElement).toBeInTheDocument();
     });
 
@@ -80,7 +74,7 @@ describe("change language", () => {
 
       fireEvent.change(sagaSelectElement, { target: { value: "vi" } });
 
-      const helloTextElement = await screen.findByText("Xin chào", { selector: "strong" });
+      const helloTextElement = await screen.findByText("Xin chào", { trim: true, selector: "strong" });
       expect(helloTextElement).toBeInTheDocument();
     });
   });
@@ -95,7 +89,7 @@ describe("change language", () => {
 
       fireEvent.change(observableSelectElement, { target: { value: "de" } });
 
-      const helloTextElement = await screen.findByText("Hallo", { selector: "strong" });
+      const helloTextElement = await screen.findByText("Hallo", { trim: true, selector: "strong" });
       expect(helloTextElement).toBeInTheDocument();
     });
 
@@ -108,7 +102,7 @@ describe("change language", () => {
 
       fireEvent.change(observableSelectElement, { target: { value: "vi" } });
 
-      const helloTextElement = await screen.findByText("Xin chào", { selector: "strong" });
+      const helloTextElement = await screen.findByText("Xin chào", { trim: true, selector: "strong" });
       expect(helloTextElement).toBeInTheDocument();
     });
   });

@@ -6,7 +6,7 @@ import { AppThunk, AppSaga, AppEpic } from "#/for-examples";
 import { useAppDispatch, useAppSelector } from "#/redux/store";
 import { useLocalizedNow } from "#/lib/dayjs";
 
-export const HomeScreen: React.FunctionComponent = () => {
+export const HomeScreen: React.FC = () => {
   const { t } = useTranslation("home-screen");
   const dispatch = useAppDispatch();
   const language = useAppSelector((state) => state.language);
