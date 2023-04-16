@@ -12406,6 +12406,7 @@ __metadata:
     sass-loader: 13.2.2
     source-map-loader: 4.0.1
     style-loader: 3.3.2
+    swc-loader: 0.2.3
     tailwindcss: 3.3.1
     terser-webpack-plugin: 5.3.7
     ts-node: 10.9.1
@@ -13979,6 +13980,16 @@ __metadata:
   bin:
     svgo: bin/svgo
   checksum: 381ba14aa782e71ab7033227634a3041c11fa3e2769aeaf0df43a08a615de61925108e34f55af6e7c5146f4a3109e78deabb4fa9d687e36d45d1f848b4e23d17
+  languageName: node
+  linkType: hard
+
+"swc-loader@npm:0.2.3":
+  version: 0.2.3
+  resolution: "swc-loader@npm:0.2.3"
+  peerDependencies:
+    "@swc/core": ^1.2.147
+    webpack: ">=2"
+  checksum: 010d84d399525c0185d36d62c86c55ae017e7a90046bc8a39be4b7e07526924037868049f6037bc966da98151cb2600934b96a66279b742d3c413a718b427251
   languageName: node
   linkType: hard
 

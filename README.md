@@ -6,16 +6,17 @@
 
 This boilerplate is massively copied from `create-react-app@5.0.1`'s ejected initial app. It has/supports:
 
-- `webpack.config.js`.
+- Webpack configuration files (without and with `swc`)
 - Babel and TypeScript.
 - React, Redux (thunk, saga, and observable - keep what you choose, uninstall others, or use them all, it is OK).
 - ESLint and Prettier.
 - SASS/SCSS/CSS modules and Tailwindcss.
 - EditorConfig.
+- Testing.
 - Docker (for development and deployment).
 
 I also created notes on deploying static website to various cloud services:
-- Amazon Web Services (S3, Lightsail)
+- Amazon Web Services (S3, Lightsail, ECS)
 - Azure (Azure App Service, Azure Storage)
 - Google Cloud Platform (Google Cloud Storage, Google Cloud Run, Google Kubernetes Engine)
 
@@ -86,6 +87,7 @@ In this option, the configuration file has already used Docker volume, which all
   - TypeScript
   - Babel
   - Commitlint
+  - SWC
   - `lint-staged`
   - `husky`
   - ESLint
