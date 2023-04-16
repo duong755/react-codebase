@@ -1,5 +1,5 @@
-DOCKER_COMPOSE_NGINX=docker-compose -f ./docker/webservers/nginx/docker-compose.yml
-DOCKER_COMPOSE_HTTPD=docker-compose -f ./docker/webservers/httpd/docker-compose.yml
+DOCKER_COMPOSE_NGINX=docker compose -f ./docker/webservers/nginx/docker-compose.yml
+DOCKER_COMPOSE_HTTPD=docker compose -f ./docker/webservers/httpd/docker-compose.yml
 
 all:
 

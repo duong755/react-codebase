@@ -131,11 +131,11 @@ The uploading part can be done via AWS CLI.
 aws_access_key_id={{your access key id}}
 aws_secret_access_key={{you secret access key}}
 ```
-- Then you can upload the `./build` directory to the bucket via the command
+- Then you can upload the `./dist` directory to the bucket via the command
 ```shell
-aws s3 sync ./path/to/build s3://{{bucket name}}
+aws s3 sync ./path/to/dist s3://{{bucket name}}
 ```
-You might wanna add `--delete` flag to remove the files that don't exist in `./path/to/build`.
+You might wanna add `--delete` flag to remove the files that don't exist in `./path/to/dist`.
 
 ### CloudFront (optional, but recommended)
 

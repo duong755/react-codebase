@@ -6,3 +6,5 @@
 /.editorconfig
 /cloud
 /.github
+/dist
+/coverage
