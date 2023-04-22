@@ -24,9 +24,9 @@ ENV HTTPD_PREFIX /usr/local/apache2
 
 COPY --from=build-react-app /react-app/dist ${HTTPD_PREFIX}/htdocs
 
-COPY ./docker/webservers/httpd/default.conf ${HTTPD_PREFIX}/conf/hosts/default.conf
+COPY ./docs/docker/webservers/httpd/default.conf ${HTTPD_PREFIX}/conf/hosts/default.conf
 
-COPY ./docker/webservers/httpd/.htaccess ${HTTPD_PREFIX}/htdocs/.htaccess
+COPY ./docs/docker/webservers/httpd/.htaccess ${HTTPD_PREFIX}/htdocs/.htaccess
 
 # enable rewrite_module
 RUN echo "LoadModule rewrite_module modules/mod_rewrite.so" >> ${HTTPD_PREFIX}/conf/httpd.conf

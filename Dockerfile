@@ -19,7 +19,7 @@ RUN yarn build:prod
 
 FROM nginx:1.22.1-alpine
 
-COPY ./docker/webservers/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./docs/docker/webservers/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=build-react-app /react-app/dist /usr/share/nginx/html/react-app
 
