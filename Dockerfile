@@ -24,3 +24,5 @@ COPY ./docs/docker/webservers/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-react-app /react-app/dist /usr/share/nginx/html/react-app
 
 EXPOSE 80
+
+CMD [ "nginx", "-g", "daemon off;" ]
