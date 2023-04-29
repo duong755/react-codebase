@@ -129,6 +129,7 @@ module.exports = {
     "coverage/",
     ".vscode/",
     ".webpack/",
+    "dist/",
     "*.cjs",
     ".yarn",
   ],
