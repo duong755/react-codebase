@@ -6,9 +6,11 @@
 
 This boilerplate is massively copied from `create-react-app@5.0.1`'s ejected initial app. It has/supports:
 
-- Webpack configuration files (without and with `swc`)
+- Webpack configuration files (without and with `swc`).
+- Vite configuration.
 - Babel and TypeScript.
 - React, Redux (thunk, saga, and observable - keep what you choose, uninstall others, or use them all, it is OK).
+- Zustand (another state management solution).
 - ESLint and Prettier.
 - SASS/SCSS/CSS modules and Tailwindcss.
 - EditorConfig.

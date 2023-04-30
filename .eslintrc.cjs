@@ -97,7 +97,7 @@ module.exports = {
     "@typescript-eslint/indent": ["off"],
     "@typescript-eslint/quotes": ["off"],
     "prettier/prettier": [
-      "error",
+      "warn",
       {},
       {
         usePretierrc: true,
