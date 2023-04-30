@@ -6,6 +6,7 @@ module.exports = {
     ],
     "@emotion/babel-plugin",
     "babel-plugin-polished",
+    "babel-plugin-transform-vite-meta-env",
   ],
   presets: [
     ["@babel/preset-env", { targets: { node: "current" } }],

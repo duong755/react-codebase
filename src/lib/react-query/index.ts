@@ -12,5 +12,4 @@ export const defaultQueryClient = new QueryClient({
       retry: false,
     },
   },
-  logger: console,
 });
