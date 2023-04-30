@@ -16,4 +16,3 @@ services:
       - ./:/react-app # [host path]:[container path]
     ports:
       - "3333:80" # [host port]:[container port]
-    command: ["nginx", "-g", "daemon off;"]

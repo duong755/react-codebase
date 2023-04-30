@@ -1,0 +1,8 @@
+services:
+  react-app:
+    container_name: "httpd-react-app"
+    build:
+      context: ../../../.. # tip: at the directory which contains THIS FILE, run cd <CONTEXT> will move to the root directory
+      dockerfile: ./docs/docker/webservers/httpd/Dockerfile # relative to context
+    ports:
+      - "3400:80" # [host post]:[container port]

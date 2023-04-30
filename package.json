@@ -16,7 +16,13 @@
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:swc": "jest --config=swc-jest.config.cjs",
-    "test:swc:cov": "jest --config=swc-jest.config.cjs --coverage"
+    "test:swc:cov": "jest --config=swc-jest.config.cjs --coverage",
+    "nginx": "docker compose -f ./docs/docker/webservers/nginx/docker-compose.yml up --build --detach --remove-orphans",
+    "nginx:stop": "docker compose -f ./docs/docker/webservers/nginx/docker-compose.yml down",
+    "nginx:restart": "docker compose -f ./docs/docker/webservers/nginx/docker-compose.yml restart",
+    "httpd": "docker compose -f ./docs/docker/webservers/httpd/docker-compose.yml up --build --detach --remove-orphans",
+    "httpd:stop": "docker compose -f ./docs/docker/webservers/httpd/docker-compose.yml down",
+    "httpd:restart": "docker compose -f ./docs/docker/webservers/httpd/docker-compose.yml restart"
   },
   "devDependencies": {
     "@babel/core": "7.21.4",
