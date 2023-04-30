@@ -6,9 +6,11 @@
 
 This boilerplate is massively copied from `create-react-app@5.0.1`'s ejected initial app. It has/supports:
 
-- Webpack configuration files (without and with `swc`)
+- Webpack configuration files (without and with `swc`).
+- Vite configuration.
 - Babel and TypeScript.
 - React, Redux (thunk, saga, and observable - keep what you choose, uninstall others, or use them all, it is OK).
+- Zustand (another state management solution).
 - ESLint and Prettier.
 - SASS/SCSS/CSS modules and Tailwindcss.
 - EditorConfig.
@@ -41,7 +43,8 @@ To use this locally, firstly, clone this repository, then you can run it with or
 
 - Install Node.js (>=14), you might want to install specific versions of Node.js via [nvm](https://github.com/nvm-sh/nvm)
 - Install dependencies by running the command `yarn` or `yarn install`.
-- Run `yarn start` and open `http://localhost:3000` in your browser of choice.
+- To use Webpack, run `yarn start` and open `http://localhost:3000` in your browser of choice.
+- To use Vite, run `yarn vite` and open `http://localhost:5173`.
 
 ### Option 2. With Docker
 

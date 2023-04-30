@@ -24,7 +24,9 @@
     "exactOptionalPropertyTypes": true,
     "resolveJsonModule": true,
     "paths": {
-      "#/*": ["./src/*"],
+      "#/*": [
+        "./src/*"
+      ],
     },
     "typeRoots": [
       "./node_modules/@types/",
@@ -32,7 +34,8 @@
     ]
   },
   "include": [
-    "src"
+    "src",
+    "vite.config.ts"
   ],
   "files": [
     "jest.config.cjs",
@@ -47,5 +50,10 @@
     "tsconfig.json",
     "package.json",
     "*.cjs"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }
