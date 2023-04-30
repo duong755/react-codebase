@@ -2,6 +2,8 @@ FROM node:16.19.0-alpine AS build-react-app
 
 LABEL author=duong755
 
+ARG VITE_API_BASE_URL
+
 WORKDIR /react-app
 
 COPY package.json yarn.lock ./
