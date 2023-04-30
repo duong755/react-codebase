@@ -14,7 +14,7 @@ interface AppMiddlewareProps {
   handleChangeSelection: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
-const AppBase: React.FunctionComponent<Omit<AppMiddlewareProps, "dispatch">> = ({
+const AppBase: React.FC<Omit<AppMiddlewareProps, "dispatch">> = ({
   language,
   handleChangeSelection,
   className,
@@ -32,10 +32,7 @@ const AppBase: React.FunctionComponent<Omit<AppMiddlewareProps, "dispatch">> = (
   );
 };
 
-export const AppThunk: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({
-  dispatch,
-  language,
-}) => {
+export const AppThunk: React.FC<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({ dispatch, language }) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
     dispatch(languageChangeThunk(languageCode));
@@ -51,10 +48,7 @@ export const AppThunk: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatc
   );
 };
 
-export const AppSaga: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({
-  dispatch,
-  language,
-}) => {
+export const AppSaga: React.FC<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({ dispatch, language }) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
     dispatch(sagaActions.language.change(languageCode));
@@ -70,10 +64,7 @@ export const AppSaga: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatch
   );
 };
 
-export const AppEpic: React.FunctionComponent<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({
-  dispatch,
-  language,
-}) => {
+export const AppEpic: React.FC<Pick<AppMiddlewareProps, "dispatch" | "language">> = ({ dispatch, language }) => {
   const handleChangeLanguageSelection: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     const languageCode = event.target.value;
     dispatch(epicActions.language.change(languageCode));

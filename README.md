@@ -43,7 +43,8 @@ To use this locally, firstly, clone this repository, then you can run it with or
 
 - Install Node.js (>=14), you might want to install specific versions of Node.js via [nvm](https://github.com/nvm-sh/nvm)
 - Install dependencies by running the command `yarn` or `yarn install`.
-- Run `yarn start` and open `http://localhost:3000` in your browser of choice.
+- To use Webpack, run `yarn start` and open `http://localhost:3000` in your browser of choice.
+- To use Vite, run `yarn vite` and open `http://localhost:5173`.
 
 ### Option 2. With Docker
 
