@@ -1,11 +1,27 @@
 **/.git
 **/node_modules
-/.webpack
+
+# Editor
 /.vscode
-/build
-/.editorconfig
-/cloud
-/.github
+
+# Documentation
+/docs/cloud
+
+# Build output
 /dist
+/.webpack
+
+# Test coverage
 /coverage
+
+# Github Actions
 /.github
+
+# Yarn v2
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

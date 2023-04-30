@@ -4,7 +4,7 @@ LABEL author=duong755
 
 WORKDIR /react-app-dev
 
-COPY package.json yarn.lock ./
+COPY .yarn .yarnrc.yml package.json yarn.lock ./
 
 RUN npm i -g corepack && \
   corepack enable && \

@@ -6,7 +6,7 @@ ARG VITE_API_BASE_URL
 
 WORKDIR /react-app
 
-COPY package.json yarn.lock ./
+COPY .yarn .yarnrc.yml package.json yarn.lock ./
 
 RUN npm i -g corepack && \
   corepack enable && \
