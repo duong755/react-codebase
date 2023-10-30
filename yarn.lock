@@ -5282,14 +5282,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.3.5":
-  version: 1.3.5
-  resolution: "axios@npm:1.3.5"
+"axios@npm:1.6.0":
+  version: 1.6.0
+  resolution: "axios@npm:1.6.0"
   dependencies:
     follow-redirects: ^1.15.0
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: 4d6bcf933b1cdff86d4993752aaeeeedc4a7f7a4b1c942847f6884bb13fc6106610ff826b076acf0b08d8ced55dee9344bb9a11f3624c3e70ab1da1a40bb5506
+  checksum: c7c9f2ae9e0b9bad7d6f9a4dff030930b12ee667dedf54c3c776714f91681feb743c509ac0796ae5c01e12c4ab4a2bee74905068dd200fbc1ab86f9814578fb0
   languageName: node
   linkType: hard
 
@@ -12573,7 +12573,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.21, postcss@npm:^8.0.9, postcss@npm:^8.4.19, postcss@npm:^8.4.21":
+"postcss@npm:8.4.31":
+  version: 8.4.31
+  resolution: "postcss@npm:8.4.31"
+  dependencies:
+    nanoid: ^3.3.6
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: 1d8611341b073143ad90486fcdfeab49edd243377b1f51834dc4f6d028e82ce5190e4f11bb2633276864503654fb7cab28e67abdc0fbf9d1f88cad4a0ff0beea
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.0.9, postcss@npm:^8.4.19, postcss@npm:^8.4.21":
   version: 8.4.21
   resolution: "postcss@npm:8.4.21"
   dependencies:
@@ -12886,7 +12897,7 @@ __metadata:
     "@typescript-eslint/parser": 5.57.1
     "@vitejs/plugin-react": 4.0.0
     autoprefixer: 10.4.14
-    axios: 1.3.5
+    axios: 1.6.0
     babel-jest: 29.5.0
     babel-loader: 9.1.2
     babel-plugin-polished: 1.1.0
@@ -12921,7 +12932,7 @@ __metadata:
     mini-css-extract-plugin: 2.7.5
     msw: 1.2.1
     polished: 4.2.2
-    postcss: 8.4.21
+    postcss: 8.4.31
     postcss-flexbugs-fixes: 5.0.2
     postcss-loader: 7.2.4
     postcss-preset-env: 8.3.0
@@ -12930,7 +12941,7 @@ __metadata:
     react: 18.2.0
     react-dev-utils: 12.0.1
     react-dom: 18.2.0
-    react-hook-form: 7.43.9
+    react-hook-form: 7.47.0
     react-i18next: 12.2.0
     react-redux: 8.0.5
     react-refresh: 0.14.0
@@ -12959,7 +12970,7 @@ __metadata:
     webpack-cli: 5.0.1
     webpack-dev-server: 4.13.2
     webpack-manifest-plugin: 5.0.0
-    zod: 3.21.4
+    zod: 3.22.3
     zustand: 4.3.7
   languageName: unknown
   linkType: soft
@@ -13015,12 +13026,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.43.9":
-  version: 7.43.9
-  resolution: "react-hook-form@npm:7.43.9"
+"react-hook-form@npm:7.47.0":
+  version: 7.47.0
+  resolution: "react-hook-form@npm:7.47.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: 65b94de625f2b7921c4e856bf0abbe142bfe06c052217bd1bcc3a842e2cc37fa3a3e03758119dc038bbcf5edb49e02c29206528b80b201f9a4d601471ef78153
+  checksum: dec192fec9c54e436f9e47008635dd7849b6b119ed477a9b0cd491367a0b2ced3427cd937febfb245e1cb7578c863917181d903eff4519c2787bf713ec7d3426
   languageName: node
   linkType: hard
 
@@ -15977,10 +15988,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:3.21.4":
-  version: 3.21.4
-  resolution: "zod@npm:3.21.4"
-  checksum: f185ba87342ff16f7a06686767c2b2a7af41110c7edf7c1974095d8db7a73792696bcb4a00853de0d2edeb34a5b2ea6a55871bc864227dace682a0a28de33e1f
+"zod@npm:3.22.3":
+  version: 3.22.3
+  resolution: "zod@npm:3.22.3"
+  checksum: 65b05139be337078a70700b05942ab7f2ef5f11abe194df14ef257fac4e5c383476a4dc290731842996bd57fc8d5bf38e5a4c907fe8cdf8b15477f8da5bfcc00
   languageName: node
   linkType: hard
 
