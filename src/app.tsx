@@ -1,8 +1,8 @@
-import React, { lazy } from "react";
+import React from "react";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
-const HomeScreen = lazy(() => import("#/screens/home"));
-const AboutScreen = lazy(() => import("#/screens/about"));
+const LanguagesScreen = React.lazy(() => import("#/screens/languages"));
+const AboutScreen = React.lazy(() => import("#/screens/about"));
 
 function withSuspense(node: React.ReactNode, fallback: NonNullable<React.ReactNode> | null = null) {
   return <React.Suspense fallback={fallback}>{node}</React.Suspense>;
@@ -11,7 +11,8 @@ function withSuspense(node: React.ReactNode, fallback: NonNullable<React.ReactNo
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={withSuspense(<HomeScreen />)} />
+      <Route path="/" element={<React.Fragment />} />
+      <Route path="/languages" element={withSuspense(<LanguagesScreen />)} />
       <Route path="/about" element={withSuspense(<AboutScreen />)} />
     </Route>
   )

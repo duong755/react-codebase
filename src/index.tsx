@@ -8,9 +8,9 @@ import { App } from "./app";
 import "./index.scss";
 
 import { reduxStore } from "#/redux/store";
-import "#/lib/dayjs";
-import "#/lib/i18next";
-import { defaultQueryClient } from "#/lib/react-query";
+import "#/configs/dayjs";
+import "#/configs/i18next";
+import { defaultQueryClient } from "#/configs/react-query";
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
 

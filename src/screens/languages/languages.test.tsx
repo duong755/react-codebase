@@ -1,10 +1,12 @@
 import { screen, fireEvent, waitForElementToBeRemoved } from "@testing-library/react";
 
-import { renderHomeScreen } from "./home.test-utils";
+import { LanguagesScreen } from "./languages";
+
+import { customRender } from "#/utils/test-utils";
 
 describe("change language", () => {
   it("should be in English", async () => {
-    renderHomeScreen();
+    customRender(<LanguagesScreen />);
 
     const helloTextElement = await screen.findByText("Hello", { selector: "strong" });
     expect(helloTextElement).toBeInTheDocument();
@@ -12,7 +14,7 @@ describe("change language", () => {
 
   describe("change with thunk", () => {
     it("should be changed to German", async () => {
-      renderHomeScreen();
+      customRender(<LanguagesScreen />);
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const thunkSelectElement = threeComboboxes[0];
@@ -27,7 +29,7 @@ describe("change language", () => {
     });
 
     it("should be changed to Vietnamese", async () => {
-      renderHomeScreen();
+      customRender(<LanguagesScreen />);
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const thunkSelectElement = threeComboboxes[0];
@@ -42,7 +44,7 @@ describe("change language", () => {
 
   describe("change with saga", () => {
     it("should be changed to German", async () => {
-      renderHomeScreen();
+      customRender(<LanguagesScreen />);
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const sagaSelectElement = threeComboboxes[1];
@@ -55,7 +57,7 @@ describe("change language", () => {
     });
 
     it("should be changed to Vietnamese", async () => {
-      renderHomeScreen();
+      customRender(<LanguagesScreen />);
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const sagaSelectElement = threeComboboxes[1];
@@ -70,7 +72,7 @@ describe("change language", () => {
 
   describe("change with observable", () => {
     it("should be changed to German", async () => {
-      renderHomeScreen();
+      customRender(<LanguagesScreen />);
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const observableSelectElement = threeComboboxes[2];
@@ -83,7 +85,7 @@ describe("change language", () => {
     });
 
     it("should be changed to Vietnamese", async () => {
-      renderHomeScreen();
+      customRender(<LanguagesScreen />);
 
       const threeComboboxes = await screen.findAllByRole("combobox");
       const observableSelectElement = threeComboboxes[2];

@@ -1,7 +1,7 @@
 const { cleanup } = require("@testing-library/react");
 
-require("#/lib/dayjs");
-require("#/lib/i18next");
+require("#/configs/dayjs");
+require("#/configs/i18next");
 
 afterEach(() => {
   cleanup();

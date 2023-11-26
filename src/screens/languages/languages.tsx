@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import { AppThunk, AppSaga, AppEpic } from "#/for-examples";
 
 import { useAppDispatch, useAppSelector } from "#/redux/store";
-import { useLocalizedNow } from "#/lib/dayjs";
+import { useLocalizedNow } from "#/configs/dayjs";
 
-export const HomeScreen: React.FC = () => {
+export const LanguagesScreen: React.FC = () => {
   const { t } = useTranslation("home-screen");
   const dispatch = useAppDispatch();
   const language = useAppSelector((state) => state.language);
@@ -38,4 +38,4 @@ export const HomeScreen: React.FC = () => {
   );
 };
 
-export default HomeScreen;
+export default LanguagesScreen;
